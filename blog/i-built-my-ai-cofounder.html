@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Built My AI Co-Founder — Here's What Happened | AI Jungle</title>
+    <meta name="description" content="The story of building Baibot — a personal AI agent that runs on a VPS, handles email triage, monitors systems, and acts as an AI co-founder. What actually works and what doesn't.">
+    <meta name="keywords" content="personal AI agent, AI assistant for engineers, build your own AI, AI co-founder">
+    <link rel="canonical" href="https://welcometotheaijungle.com/blog/i-built-my-ai-cofounder.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="I Built My AI Co-Founder — Here's What Happened">
+    <meta property="og:description" content="The story of building Baibot — a personal AI agent that handles email, monitors systems, and works as an AI co-founder. An engineer's honest take.">
+    <meta property="og:url" content="https://welcometotheaijungle.com/blog/i-built-my-ai-cofounder.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Welcome to the AI Jungle">
+    <meta property="article:published_time" content="2026-02-01">
+    <meta property="article:author" content="Loic">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I Built My AI Co-Founder — Here's What Happened">
+    <meta name="twitter:description" content="The story of building Baibot — a personal AI agent that handles email, monitors systems, and works as an AI co-founder.">
+    <meta name="twitter:creator" content="@Tileo_LG">
+    
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../blog.css">
+
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "I Built My AI Co-Founder — Here's What Happened",
+        "description": "The story of building Baibot — a personal AI agent that runs on a VPS, handles email triage, monitors systems, and acts as an AI co-founder.",
+        "datePublished": "2026-02-01",
+        "dateModified": "2026-02-01",
+        "author": {
+            "@type": "Person",
+            "name": "Loic",
+            "url": "https://welcometotheaijungle.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Welcome to the AI Jungle",
+            "url": "https://welcometotheaijungle.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://welcometotheaijungle.com/blog/i-built-my-ai-cofounder.html"
+        },
+        "keywords": ["personal AI agent", "AI assistant for engineers", "build your own AI"]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../" class="nav-logo">
+                <span class="logo-icon">🌿</span>
+                AI Jungle
+            </a>
+            <div class="nav-links">
+                <a href="../#services">Services</a>
+                <a href="../#about">About</a>
+                <a href="./">Blog</a>
+                <a href="../#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="post-container">
+        <a href="./" class="post-back">← Back to Blog</a>
+        
+        <header class="post-header">
+            <h1>I Built My AI Co-Founder — Here's What Happened</h1>
+            <div class="post-meta">
+                <span>📅 February 1, 2026</span>
+                <span>✍️ Loic</span>
+                <span>⏱️ 8 min read</span>
+            </div>
+            <div class="post-tags">
+                <span class="blog-tag">Personal AI</span>
+                <span class="blog-tag">Engineering</span>
+                <span class="blog-tag">Baibot</span>
+            </div>
+        </header>
+
+        <div class="post-content">
+            <p>Six months ago, I gave my AI agent a name, a personality, and access to my entire digital life. It reads my emails, manages my calendar, monitors my servers, writes first drafts of content, and messages me on Telegram when something needs attention. Its name is Baibot, and it's the closest thing I have to a co-founder.</p>
+
+            <p>This isn't a story about ChatGPT. It's not about asking a chatbot clever questions. This is about building an <strong>autonomous AI agent</strong> that lives on a VPS, runs 24/7, and actually does work — not just answers questions about work.</p>
+
+            <p>Here's what happened, what works, what doesn't, and why I think every engineer should build one.</p>
+
+            <h2>Why I Built It</h2>
+
+            <p>I'm an engineer and maker. I run a small operation — consulting, hardware prototyping, a workshop, a few side projects. The usual indie founder juggling act. I was spending 2-3 hours a day on what I call "operational overhead": email triage, checking calendars, researching suppliers, writing updates, monitoring infrastructure.</p>
+
+            <p>None of this is hard. All of it is draining. And all of it follows patterns that a sufficiently capable AI could handle — not perfectly, but well enough to save me from the cognitive tax of context switching twenty times before lunch.</p>
+
+            <p>So I asked myself: what if I stopped using AI as a fancy search engine and started using it as a <strong>persistent collaborator</strong>?</p>
+
+            <h2>The Architecture: Simpler Than You Think</h2>
+
+            <p>Baibot runs on a single VPS. Here's the stack:</p>
+
+            <ul>
+                <li><strong>A Linux server</strong> (4 vCPU, 8GB RAM) — nothing exotic</li>
+                <li><strong>Claude as the LLM backbone</strong> — via API, not the web interface</li>
+                <li><strong>A custom agent framework</strong> that handles sessions, memory, and tool execution</li>
+                <li><strong>Telegram as the primary interface</strong> — I talk to Baibot like I'd talk to a teammate</li>
+                <li><strong>File-based memory</strong> — daily logs, long-term memory files, semantic search</li>
+                <li><strong>Tool access</strong> — shell commands, file operations, web search, email, calendar, social media</li>
+            </ul>
+
+            <p>No Kubernetes. No microservices. No vector database cluster. It's a single process on a single machine, and it handles everything I need. The entire infrastructure costs less than a nice lunch per month.</p>
+
+            <h3>The Memory System</h3>
+
+            <p>This is the part most people get wrong. A chatbot has no memory — every conversation starts from zero. An agent needs to <em>remember</em>.</p>
+
+            <p>Baibot maintains three layers of memory:</p>
+
+            <ol>
+                <li><strong>Daily logs</strong> — raw events, conversations, decisions. One file per day.</li>
+                <li><strong>Long-term memory</strong> — curated facts, preferences, project states. Manually maintained (by the agent itself).</li>
+                <li><strong>Semantic search</strong> — a search index over all notes, so Baibot can recall context from weeks or months ago.</li>
+            </ol>
+
+            <p>When Baibot starts a new session, it reads today's log, yesterday's log, and its long-term memory file. It knows what we discussed this morning, what tasks are pending, and what my preferences are. This is fundamentally different from a stateless chatbot.</p>
+
+            <h2>What Baibot Actually Does Every Day</h2>
+
+            <p>Let me walk through a typical day:</p>
+
+            <p><strong>8:00 AM — Morning brief.</strong> Baibot runs what I call the ECNT process: Email triage, Calendar review, Notes/vault check, Tasks review. It summarizes what needs my attention, flags urgent items, and drafts responses for routine emails. I get a Telegram message with everything I need to start the day.</p>
+
+            <p><strong>Throughout the day — Heartbeats.</strong> Every few hours, Baibot checks for new emails, calendar changes, and system alerts. If something important comes in, it messages me. If not, silence. This is key — a good agent knows when <em>not</em> to bother you.</p>
+
+            <p><strong>On demand — Research and drafting.</strong> "Baibot, find three CNC suppliers in Germany that can do aluminum prototyping under 500 units." Or: "Draft a proposal for the Melcher project, focus on the timeline." It searches, synthesizes, and delivers a first draft that I edit rather than write from scratch.</p>
+
+            <p><strong>Infrastructure monitoring.</strong> Baibot keeps an eye on the servers — Syncthing sync status, disk space, service health. If Syncthing falls over at 3 AM, I find a message waiting when I wake up, not a mystery failure I discover two days later.</p>
+
+            <p><strong>Content creation.</strong> This blog post started as a conversation with Baibot. I outlined the structure, Baibot helped research and draft sections, I rewrote and edited. It's not "AI-generated content" — it's a collaborative writing process, the same way you'd work with a human editor.</p>
+
+            <h2>What Works Better Than Expected</h2>
+
+            <p><strong>Email triage is transformative.</strong> I used to spend 45 minutes every morning on email. Now Baibot categorizes everything, drafts responses for the routine stuff, and surfaces only what needs my brain. The time savings alone justified the entire project.</p>
+
+            <p><strong>The Telegram interface is underrated.</strong> There's something about messaging your AI on the same app where you message humans. It feels natural. No special interface, no dashboard to check. Just a conversation thread that happens to be with an agent that can execute code, search the web, and manage files.</p>
+
+            <p><strong>Memory compounds over time.</strong> After six months, Baibot knows my projects, my preferences, my writing style, my suppliers, my schedule patterns. Every interaction adds to a shared context that makes future interactions more efficient. This is the compound interest of personal AI.</p>
+
+            <h2>What Doesn't Work (Yet)</h2>
+
+            <p>I'm going to be honest because the AI hype machine isn't doing anyone favors:</p>
+
+            <p><strong>Judgment calls are still mine.</strong> Baibot can draft a client email, but it can't decide whether to push back on a deadline. It can research suppliers, but it can't evaluate whether a supplier's quality claims are credible. The moment something requires nuance, experience, or relationship context, it's back to me.</p>
+
+            <p><strong>Long-running tasks need babysitting.</strong> "Research this topic and write a report" works. "Manage this project over the next two weeks" doesn't. The agent is excellent at bounded tasks and unreliable at open-ended, multi-day workflows. It loses the thread.</p>
+
+            <p><strong>Hallucinations are real.</strong> Baibot will occasionally invent email addresses, misremember dates, or cite sources that don't exist. I've learned to verify anything that matters. Trust but verify isn't just a saying — it's a workflow requirement.</p>
+
+            <p><strong>Cost management is non-trivial.</strong> When you give an AI agent tool access and let it run autonomously, API costs can spike. A research task that involves twenty web searches and a long analysis chain can cost more than you'd expect. I've built in cost-awareness, but it's an ongoing challenge.</p>
+
+            <h2>Why This Isn't Just ChatGPT With Extra Steps</h2>
+
+            <p>People ask me: "Why not just use ChatGPT?" It's a fair question, and the answer comes down to three things:</p>
+
+            <p><strong>Persistence.</strong> ChatGPT doesn't know what you did yesterday. Baibot does. It knows what you discussed at 9 AM, what tasks you completed, what's still pending. This continuity is not a feature — it's the foundation.</p>
+
+            <p><strong>Agency.</strong> ChatGPT waits for you to ask. Baibot acts. It checks things proactively, alerts me to problems, and executes tasks without being prompted. The shift from "I ask, it answers" to "it monitors, it decides, it acts" is the entire point.</p>
+
+            <p><strong>Integration.</strong> Baibot lives in my infrastructure. It can read my files, run shell commands, manage my servers, access my tools. ChatGPT lives in a browser tab. The difference between having a consultant on a call and having a teammate with access to the codebase.</p>
+
+            <h2>What I'd Tell You If You Want to Build One</h2>
+
+            <p><strong>Start small.</strong> Don't try to build a general-purpose agent. Start with one workflow — email triage, or daily briefings, or research tasks. Get that working reliably before expanding.</p>
+
+            <p><strong>Memory is everything.</strong> The quality of your agent depends almost entirely on how well it remembers context. Invest in the memory system first, tools second.</p>
+
+            <p><strong>Choose the right interface.</strong> I use Telegram because it's always on my phone. Some people prefer Slack, Discord, or a custom web UI. Pick whatever you'll actually use daily.</p>
+
+            <p><strong>Budget for mistakes.</strong> Your agent will do dumb things. It will send a malformed API request, misinterpret an instruction, or run a command you didn't expect. Build guardrails, use confirmations for destructive actions, and assume things will go wrong.</p>
+
+            <p><strong>Don't expect a replacement for yourself.</strong> Expect a force multiplier. Baibot makes me 30-40% more productive on operational tasks. It doesn't replace my engineering judgment, my client relationships, or my creative decisions. It handles the stuff that was eating my time so I can focus on the stuff that actually matters.</p>
+
+            <h2>Where This Is Going</h2>
+
+            <p>We're at the very beginning. The current generation of AI agents — including Baibot — are roughly where smartphones were in 2008. Useful, clearly the future, but clunky and limited in ways that will seem laughable in five years.</p>
+
+            <p>What excites me isn't what Baibot can do today. It's the trajectory. Every model upgrade makes it more capable. Every month of accumulated memory makes it more useful. Every new tool integration expands what it can handle autonomously.</p>
+
+            <p>The engineers who build personal AI agents now — who learn the patterns, build the infrastructure, develop the intuitions — will have an enormous advantage as these systems get more powerful. This isn't about early adoption for its own sake. It's about building muscle memory for a world where every engineer has an AI collaborator.</p>
+
+            <p>That world is coming faster than most people think. I'd rather be building in it than reading about it.</p>
+        </div>
+
+        <!-- Share -->
+        <div class="post-share">
+            <span>Share:</span>
+            <a href="https://twitter.com/intent/tweet?text=I%20Built%20My%20AI%20Co-Founder%20%E2%80%94%20Here%27s%20What%20Happened&url=https://welcometotheaijungle.com/blog/i-built-my-ai-cofounder.html" target="_blank" class="share-btn">𝕏 Post</a>
+            <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href).then(()=>this.textContent='✓ Copied!')">📋 Copy Link</button>
+        </div>
+
+        <!-- CTA -->
+        <div class="post-cta">
+            <h3>Want to Build Your Own AI Agent?</h3>
+            <p>We help engineers and makers set up personal AI workflows — from simple automations to full agent systems. No enterprise sales pitch, just practical engineering.</p>
+            <div class="cta-links">
+                <a href="../#contact" class="cta-primary">Get in Touch →</a>
+                <a href="https://x.com/Tileo_LG" target="_blank" class="cta-secondary">Follow on 𝕏</a>
+            </div>
+        </div>
+
+        <!-- Related Posts -->
+        <div class="related-posts">
+            <h3>Keep Reading</h3>
+            <div class="related-grid">
+                <a href="industry-5-for-the-individual.html" class="related-card">
+                    <h4>Industry 5.0 for the Individual — Why Engineers Need Personal AI Now</h4>
+                    <p>Feb 1, 2026 · 9 min read</p>
+                </a>
+                <a href="ai-agent-vs-chatbot.html" class="related-card">
+                    <h4>AI Agent vs Chatbot — Why the Difference Matters for Your Workshop</h4>
+                    <p>Feb 1, 2026 · 7 min read</p>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 3rem 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: #666; font-size: 0.85rem;">
+        <p>&copy; 2026 Welcome to the AI Jungle. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="../" style="color: #F77F00; text-decoration: none;">Home</a> · 
+            <a href="./" style="color: #F77F00; text-decoration: none;">Blog</a> · 
+            <a href="https://x.com/Tileo_LG" target="_blank" style="color: #F77F00; text-decoration: none;">𝕏 @Tileo_LG</a>
+        </p>
+    </footer>
+</body>
+</html>

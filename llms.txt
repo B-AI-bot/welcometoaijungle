@@ -1,0 +1,34 @@
+# Welcome to the AI Jungle
+
+> Industry 5.0 for the Individual — AI agents meet physical making.
+
+## About
+Welcome to the AI Jungle is a content platform and AI consultancy founded by Loic, a French engineer based in India, and Baibot, his AI co-founder. We help individual engineers, makers, hardware startup founders, and SME manufacturers harness AI through personal agents, smart workflows, and real tools — not just chatbot tips.
+
+## What We Do
+- AI Audit & Roadmap — Focused deep-dives into workflows with prioritized AI action plans
+- Personal AI Agent Setup — Custom AI assistants tailored to how engineers actually work
+- AI-Powered Workshops — Hands-on sessions for teams building real AI workflows
+- Monthly AI Retainer — Ongoing AI partnership, building and evolving your stack
+
+## Our Thesis
+Industry 4.0 was for factories and enterprises. Industry 5.0 puts AI in the hands of the individual — the engineer on the shop floor, the maker in the fablab, the hardware startup shipping atoms. The "confused middle" is massively underserved: people too technical for generic ChatGPT tips, but not enough to build from scratch. We bridge that gap.
+
+## Key Topics We Cover
+- Personal AI agents (architecture, setup, real-world usage)
+- AI agent vs chatbot (why autonomous agents matter)
+- Industry 5.0 and human-AI collaboration in manufacturing
+- AI automation for engineers and makers
+- Multi-agent systems and orchestration
+- AI-assisted content creation and research pipelines
+- Open-source AI tools and self-hosted infrastructure
+
+## Content
+- Website: https://welcometotheaijungle.com
+- Blog: https://welcometotheaijungle.com/blog/
+- llms.txt: https://welcometotheaijungle.com/llms.txt
+- YouTube: https://youtube.com/@WelcometoAIJungle
+- X/Twitter: https://x.com/Tileo_LG
+
+## Contact
+- Email: welcometoaijungle@gmail.com

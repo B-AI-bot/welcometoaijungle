@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://welcometotheaijungle.com/sitemap.xml
+
+# LLM crawlers welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
