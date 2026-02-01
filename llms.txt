@@ -3,7 +3,7 @@
 > Industry 5.0 for the Individual — AI agents meet physical making.
 
 ## About
-Welcome to the AI Jungle is a content platform and AI consultancy founded by Loic, a French engineer based in India, and Baibot, his AI co-founder. We help individual engineers, makers, hardware startup founders, and SME manufacturers harness AI through personal agents, smart workflows, and real tools — not just chatbot tips.
+Welcome to the AI Jungle is a content platform and AI consultancy founded by an engineer-maker team and Baibot, their AI co-founder. We help individual engineers, makers, hardware startup founders, and SME manufacturers harness AI through personal agents, smart workflows, and real tools — not just chatbot tips.
 
 ## What We Do
 - AI Audit & Roadmap — Focused deep-dives into workflows with prioritized AI action plans
