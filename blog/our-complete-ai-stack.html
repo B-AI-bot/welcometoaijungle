@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Complete AI Stack — How We Built a Personal AI Infrastructure in 2026 | Welcome to the AI Jungle</title>
+    <meta name="description" content="A practical, no-fluff guide to building a personal AI infrastructure in 2026. Real tools, real costs, real architecture — from VPS to multi-model routing to automated workflows.">
+    <meta name="keywords" content="personal AI infrastructure, AI agent stack, self-hosted AI assistant, Clawdbot setup, multi-model AI, AI for engineers, personal AI agent architecture, how to build personal AI assistant 2026, best AI stack for developers, self-hosted AI agent setup guide">
+    <meta name="author" content="Loïc Galland">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://welcometotheaijungle.com/blog/our-complete-ai-stack">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Our Complete AI Stack — How We Built a Personal AI Infrastructure in 2026">
+    <meta property="og:description" content="A practical guide to building a personal AI agent infrastructure. Real tools, real costs, real tradeoffs.">
+    <meta property="og:url" content="https://welcometotheaijungle.com/blog/our-complete-ai-stack">
+    <meta property="og:site_name" content="Welcome to the AI Jungle">
+    <meta property="og:image" content="https://welcometotheaijungle.com/images/blog/ai-stack-og.png">
+    <meta property="article:published_time" content="2025-07-21T09:00:00+02:00">
+    <meta property="article:author" content="Loïc Galland">
+    <meta property="article:section" content="Engineering">
+    <meta property="article:tag" content="AI Infrastructure">
+    <meta property="article:tag" content="Personal AI Agent">
+    <meta property="article:tag" content="Self-Hosted AI">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Tileo_LG">
+    <meta name="twitter:title" content="Our Complete AI Stack — How We Built a Personal AI Infrastructure in 2026">
+    <meta name="twitter:description" content="A practical guide to building a personal AI agent infrastructure. Real tools, real costs, real tradeoffs.">
+    <meta name="twitter:image" content="https://welcometotheaijungle.com/images/blog/ai-stack-og.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Our Complete AI Stack — How We Built a Personal AI Infrastructure in 2026",
+        "description": "A practical, no-fluff guide to building a personal AI infrastructure in 2026. Real tools, real costs, real architecture.",
+        "author": {
+            "@type": "Person",
+            "name": "Loïc Galland",
+            "url": "https://welcometotheaijungle.com/about"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Welcome to the AI Jungle",
+            "url": "https://welcometotheaijungle.com"
+        },
+        "datePublished": "2025-07-21",
+        "dateModified": "2025-07-21",
+        "mainEntityOfPage": "https://welcometotheaijungle.com/blog/our-complete-ai-stack",
+        "keywords": "personal AI infrastructure, AI agent stack, self-hosted AI assistant, multi-model AI, AI for engineers",
+        "proficiencyLevel": "Intermediate",
+        "dependencies": "Linux VPS, API keys for Claude/Gemini, basic CLI knowledge"
+    }
+    </script>
+
+    <style>
+        :root {
+            --jungle-green: #1a4a1a;
+            --jungle-accent: #3cb371;
+            --bg: #fafaf8;
+            --text: #1a1a1a;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --code-bg: #f3f4f6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+        article { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+        h1 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; padding-bottom: 0.3rem; border-bottom: 2px solid var(--jungle-accent); }
+        h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 0 0 1rem 1.5rem; }
+        li { margin-bottom: 0.4rem; }
+        code { background: var(--code-bg); padding: 0.15em 0.4em; border-radius: 3px; font-size: 0.9em; }
+        pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; margin-bottom: 1rem; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+        th, td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+        th { background: var(--code-bg); font-weight: 600; }
+        .tldr { background: #f0fdf4; border: 2px solid var(--jungle-accent); border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1.5rem 0 2rem; }
+        .tldr h3 { margin-top: 0; color: var(--jungle-green); }
+        .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+        .meta a { color: var(--jungle-accent); text-decoration: none; }
+        blockquote { border-left: 4px solid var(--jungle-accent); padding-left: 1rem; margin: 1rem 0; color: var(--muted); font-style: italic; }
+        .cta-box { background: var(--jungle-green); color: white; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        .cta-box a { color: var(--jungle-accent); }
+        strong { font-weight: 600; }
+        a { color: var(--jungle-green); }
+    </style>
+</head>
+<body>
+<article>
+
+    <header>
+        <h1>Our Complete AI Stack — How We Built a Personal AI Infrastructure in 2026</h1>
+        <div class="meta">
+            By <a href="https://welcometotheaijungle.com/about">Loïc Galland</a> · July 21, 2025 · 12 min read · Filed under <a href="/tag/engineering">Engineering</a>, <a href="/tag/ai-agents">AI Agents</a>
+        </div>
+    </header>
+
+    <div class="tldr">
+        <h3>TL;DR</h3>
+        <p>We run a personal AI agent stack on a €10/month VPS. <strong>Clawdbot</strong> orchestrates everything — routing requests to Claude Opus 4.5 or Gemini, managing memory in an Obsidian vault, automating daily briefs, handling email, posting to X, and spawning sub-agents for heavy tasks. Total monthly cost: ~€220. It replaces dozens of SaaS tools. This post is the full blueprint.</p>
+    </div>
+
+    <h2>1. Why Build Your Own AI Infrastructure?</h2>
+
+    <p>A <strong>personal AI infrastructure</strong> is a self-hosted system of models, tools, and automations that acts as your persistent AI assistant — not a chatbot you visit, but an agent that lives on your server and works for you around the clock.</p>
+
+    <p>You might ask: why not just use ChatGPT or Claude chat? We did, for months. Here's what broke:</p>
+
+    <ul>
+        <li><strong>Context dies.</strong> Every new conversation starts from zero. Our agent remembers yesterday, last week, and our entire project history.</li>
+        <li><strong>No tool access.</strong> Chat interfaces can't check your email, post a tweet, search your notes, or review your calendar. Ours can.</li>
+        <li><strong>No automation.</strong> You have to open the app and ask. Our agent runs morning briefs at 8 AM, evening reviews at 10 PM, and security checks every 6 hours — without being asked.</li>
+        <li><strong>Vendor lock-in.</strong> We route between Claude and Gemini based on the task. If a model goes down or a pricing tier changes, we swap — no migration pain.</li>
+    </ul>
+
+    <p>The goal was simple: build an AI assistant that knows our work, has access to our tools, runs 24/7, and costs less than a junior hire's coffee budget.</p>
+
+    <h2>2. Architecture Overview</h2>
+
+    <p>Here's how the system flows, top to bottom:</p>
+
+    <pre><code>┌──────────────┐
+│  Channels    │  Telegram · Web Chat · (future: Slack, Discord)
+└──────┬───────┘
+       │
+┌──────▼───────┐
+│  Clawdbot    │  Gateway + Orchestrator
+│  Gateway     │  Session management, routing, tool dispatch
+└──────┬───────┘
+       │
+┌──────▼───────┐
+│  Models      │  Claude Opus 4.5 (primary) · Gemini 2.5 (secondary)
+└──────┬───────┘
+       │
+┌──────▼───────┐
+│  Tools       │  Bird CLI · Brave Search · Gmail · Calendar
+│              │  GitHub · Web Scraping · File System
+└──────┬───────┘
+       │
+┌──────▼───────┐
+│  Memory      │  Obsidian Vault (PARA) · QMD semantic search
+│              │  Daily logs · MEMORY.md (curated long-term)
+└──────┬───────┘
+       │
+┌──────▼───────┐
+│  Infra       │  Contabo VPS · Tailscale mesh · Syncthing
+│              │  UFW firewall · Fail2ban · Cron automation
+└──────────────┘</code></pre>
+
+    <p>The key insight: <strong>Clawdbot is the brain, not any single model.</strong> It manages sessions, routes to the right model, maintains memory across conversations, and dispatches tool calls. The models are interchangeable; the orchestration layer is what makes it an agent instead of a chatbot.</p>
+
+    <h2>3. The Stack — Every Tool We Use</h2>
+
+    <h3>Core: Orchestration &amp; Models</h3>
+
+    <table>
+        <thead>
+            <tr><th>Component</th><th>Tool</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Orchestrator</td><td><strong>Clawdbot</strong></td><td>Gateway daemon, session management, multi-model routing, tool dispatch, sub-agent spawning</td></tr>
+            <tr><td>Primary Model</td><td><strong>Claude Opus 4.5</strong> (Anthropic)</td><td>Reasoning, writing, code generation, complex analysis</td></tr>
+            <tr><td>Secondary Model</td><td><strong>Gemini 2.5</strong> (Google)</td><td>Long-context tasks, multimodal input, cost-effective bulk processing</td></tr>
+        </tbody>
+    </table>
+
+    <p>Clawdbot runs as a systemd service on our VPS. It exposes a gateway that accepts messages from any channel (Telegram, web, CLI), resolves which model to use, injects memory context, and handles tool execution. When a task is too complex for a single pass, it spawns <strong>sub-agents</strong> — isolated sessions that handle specific jobs (research, writing, code review) and report back.</p>
+
+    <h3>Communication Channels</h3>
+
+    <ul>
+        <li><strong>Telegram</strong> — Primary interface. We message our agent like texting a colleague. Supports text, images, voice messages, file sharing.</li>
+        <li><strong>Web Chat</strong> — For longer sessions, debugging, and when we need rich formatting.</li>
+        <li><strong>Future:</strong> Slack and Discord integrations are on the roadmap for team use.</li>
+    </ul>
+
+    <h3>Memory System</h3>
+
+    <p>Memory is what separates an agent from a chatbot. Our system has three layers:</p>
+
+    <ol>
+        <li><strong>Daily Logs</strong> (<code>memory/YYYY-MM-DD.md</code>) — Raw event log. Every interaction, decision, and outcome gets recorded. The agent reads today's and yesterday's log on boot.</li>
+        <li><strong>Long-term Memory</strong> (<code>MEMORY.md</code>) — Curated, distilled knowledge. The agent periodically reviews daily logs and promotes patterns, preferences, and important facts here.</li>
+        <li><strong>Semantic Search via QMD</strong> — When the agent needs to recall something beyond the recent window, it runs hybrid search (BM25 + vector + reranking) across our entire Obsidian vault. This is the closest thing to actual recall.</li>
+    </ol>
+
+    <p>The vault itself follows the <strong>PARA structure</strong> (Projects, Areas, Resources, Archives) inside Obsidian. Everything syncs across devices via Syncthing.</p>
+
+    <h3>Tools &amp; Integrations</h3>
+
+    <table>
+        <thead>
+            <tr><th>Tool</th><th>What It Does</th><th>How It Connects</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Bird CLI</strong></td><td>Read/search/post on X (Twitter)</td><td>Cookie-based auth, CLI wrapper</td></tr>
+            <tr><td><strong>Brave Search</strong></td><td>Web search without tracking</td><td>API (free tier)</td></tr>
+            <tr><td><strong>Google Calendar</strong></td><td>Schedule review, event creation</td><td>API via service account</td></tr>
+            <tr><td><strong>Gmail</strong></td><td>Email triage and draft polishing</td><td>API (read-only for now)</td></tr>
+            <tr><td><strong>GitHub</strong></td><td>Repo management, PR reviews, issue tracking</td><td>CLI + API token</td></tr>
+            <tr><td><strong>Web Scraping</strong></td><td>Extract content from URLs</td><td>Headless browser + readability parser</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Automation</h3>
+
+    <p>Cron jobs are the unsung hero of this setup. The agent doesn't wait to be asked — it proactively runs:</p>
+
+    <ul>
+        <li><strong>Morning Brief (8:00 AM)</strong> — Weather, calendar, email summary, top tasks, relevant news. Delivered to Telegram.</li>
+        <li><strong>Evening Review (10:00 PM)</strong> — Day summary, completed tasks, pending items, tomorrow's priorities.</li>
+        <li><strong>Security Checks (every 6h)</strong> — Fail2ban status, UFW logs, service health, disk usage.</li>
+        <li><strong>Heartbeat (2-4x/day)</strong> — Rotates through email, calendar, mentions, and weather checks. Catches things between the big runs.</li>
+    </ul>
+
+    <p><strong>Sub-agent spawning</strong> deserves special mention. When the main agent needs to write a blog post, research a topic deeply, or handle multiple parallel tasks, it spawns isolated sub-agents. Each gets a focused prompt, does its work, and reports back. It's like having interns that actually finish their tasks.</p>
+
+    <h3>Infrastructure</h3>
+
+    <!-- AFFILIATE: Contabo VPS — replace href with affiliate link -->
+    <table>
+        <thead>
+            <tr><th>Component</th><th>Details</th><th>Monthly Cost</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>VPS</strong></td><td><a href="https://contabo.com">Contabo</a> Cloud VPS — 4 vCPU, 8 GB RAM, 200 GB SSD, Ubuntu 24.04</td><td>~€10</td></tr>
+            <tr><td><strong>Mesh Network</strong></td><td>Tailscale — connects VPS, workstations, and phone into a private network</td><td>Free</td></tr>
+            <tr><td><strong>File Sync</strong></td><td>Syncthing — Obsidian vault syncs across all devices, no cloud dependency</td><td>Free</td></tr>
+            <tr><td><strong>Firewall</strong></td><td>UFW + Fail2ban — SSH key-only, Syncthing locked to Tailscale subnet</td><td>Free</td></tr>
+        </tbody>
+    </table>
+
+    <p>The entire system runs on a single VPS. No Kubernetes, no Docker swarm, no multi-region deployments. One box, <code>systemd</code> services, <code>cron</code> jobs. It's boring infrastructure, and that's the point — boring is reliable.</p>
+
+    <h3>Content Creation Pipeline</h3>
+
+    <!-- AFFILIATE: Remotion — replace href with affiliate link -->
+    <table>
+        <thead>
+            <tr><th>Tool</th><th>Purpose</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong><a href="https://remotion.dev">Remotion</a></strong></td><td>Programmatic video generation (React-based)</td><td>Early — prototyping</td></tr>
+            <tr><td><strong>ElevenLabs</strong></td><td>AI voice synthesis for video narration</td><td>Working</td></tr>
+            <tr><td><strong>Nano Banana</strong></td><td>Image generation for blog/social content</td><td>Working</td></tr>
+        </tbody>
+    </table>
+
+    <h2>4. Cost Breakdown</h2>
+
+    <p>Real numbers, no asterisks:</p>
+
+    <table>
+        <thead>
+            <tr><th>Item</th><th>Monthly Cost</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Contabo VPS</td><td>~€10</td><td>4 vCPU / 8 GB RAM / 200 GB SSD</td></tr>
+            <tr><td>Claude Max subscription</td><td>~$200</td><td>Opus 4.5, high usage cap</td></tr>
+            <tr><td>Brave Search API</td><td>$0</td><td>Free tier covers our volume</td></tr>
+            <tr><td>Tailscale</td><td>$0</td><td>Free for personal use</td></tr>
+            <tr><td>Syncthing</td><td>$0</td><td>Open source, self-hosted</td></tr>
+            <tr><td>ElevenLabs</td><td>~$5-22</td><td>Depends on voice generation volume</td></tr>
+            <tr><td>Domain + misc</td><td>~$3</td><td>DNS, small services</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>~€220/month</strong></td><td></td></tr>
+        </tbody>
+    </table>
+
+    <p>For context: this replaces a note-taking app subscription, a social media scheduler, an email assistant, a research tool, a task manager, and half a virtual assistant. The Claude subscription is the biggest line item by far — and the one that delivers the most value.</p>
+
+    <h2>5. What Works Well</h2>
+
+    <p>After months of iteration, these workflows genuinely save time every day:</p>
+
+    <ul>
+        <li><strong>Morning briefs</strong> — Waking up to a Telegram message with weather, calendar, email digest, and task priorities is surprisingly effective. It replaces 15 minutes of context-switching across apps.</li>
+        <li><strong>Email polishing</strong> — We draft replies in rough bullet points. The agent rewrites them in the right tone, with proper formatting. Response time dropped significantly.</li>
+        <li><strong>Research pipelines</strong> — "Research X and give me a summary with sources" actually works. The agent searches the web, reads pages, cross-references, and produces a structured brief.</li>
+        <li><strong>Task management</strong> — The ECNT process (Email → Calendar → Notes → Tasks) runs as a daily ritual. The agent triages, suggests priorities, and tracks completions.</li>
+        <li><strong>Sub-agents for content</strong> — This blog post was drafted by a sub-agent. The main agent spawned it with a detailed brief, and it delivered the full output. Parallel work is real.</li>
+    </ul>
+
+    <h2>6. What Doesn't Work Yet</h2>
+
+    <p>Honesty section. Skip this at your peril if you're planning your own setup:</p>
+
+    <ul>
+        <li><strong>Gmail send is read-only.</strong> The agent can read and summarize email but can't send on our behalf yet. OAuth scoping and security concerns — we want to get this right, not fast.</li>
+        <li><strong>Video pipeline is early.</strong> Remotion works, ElevenLabs works, but the end-to-end flow (script → voice → video → upload) still needs manual handoff steps.</li>
+        <li><strong>Memory needs an upgrade.</strong> Daily logs accumulate. Semantic search helps, but there's no good automated process for pruning, summarizing, and compacting old memories. It's the next big project.</li>
+        <li><strong>Multi-agent coordination is primitive.</strong> Sub-agents work great for independent tasks. But when two sub-agents need to collaborate or share state, it gets messy fast.</li>
+        <li><strong>Voice interaction is one-way.</strong> The agent can generate speech (ElevenLabs) but real-time voice conversation isn't there yet.</li>
+    </ul>
+
+    <h2>7. Lessons Learned</h2>
+
+    <p>Seven months of running this system, distilled:</p>
+
+    <ol>
+        <li>
+            <strong>Start with one channel and one model.</strong> We began with just Telegram + Claude. Every other integration came later, one at a time. If you try to build the full stack on day one, you'll build nothing.
+        </li>
+        <li>
+            <strong>Memory is everything.</strong> The difference between "useful" and "transformative" is whether your agent remembers context. Even a simple daily log file makes a massive difference. Invest here early.
+        </li>
+        <li>
+            <strong>Security isn't optional.</strong> Your agent has access to your email, calendar, social accounts, and files. Treat your VPS like a production server: SSH keys only, firewall everything, audit regularly. We run Fail2ban and restrict Syncthing to our Tailscale subnet.
+        </li>
+        <li>
+            <strong>Sub-agents change everything.</strong> The moment your agent can spawn helpers for parallel work, the throughput goes through the roof. Research while writing while reviewing — simultaneously.
+        </li>
+        <li>
+            <strong>Boring infrastructure wins.</strong> No containers, no orchestrators, no cloud-native buzzwords. A single VPS, systemd, and cron. When something breaks at 2 AM, you want to SSH in and read a log file, not debug a service mesh.
+        </li>
+        <li>
+            <strong>Design for model-agnosticism.</strong> Models improve fast. Prices drop. New players emerge. If your stack is welded to one provider, you'll regret it within 6 months. Our Clawdbot gateway makes model-swapping a config change.
+        </li>
+        <li>
+            <strong>The agent should write things down.</strong> Mental notes don't survive restarts. If the agent learns something — a preference, a project status, a decision — it writes it to a file. Disk is cheap. Amnesia is expensive.
+        </li>
+    </ol>
+
+    <h2>8. Who Should Build This</h2>
+
+    <p><strong>This is for you if:</strong></p>
+    <ul>
+        <li>You're comfortable with Linux, SSH, and basic sysadmin tasks</li>
+        <li>You already use AI assistants daily and want more control</li>
+        <li>You have workflows that would benefit from automation (email, scheduling, research, content)</li>
+        <li>You're an engineer, maker, or small business operator who values owning their tools</li>
+        <li>You're willing to invest 2-4 weekends to get the baseline running</li>
+    </ul>
+
+    <p><strong>This is NOT for you if:</strong></p>
+    <ul>
+        <li>You want plug-and-play — this requires ongoing maintenance and tinkering</li>
+        <li>You're uncomfortable with API keys, environment variables, and config files</li>
+        <li>Your AI usage is occasional — the ROI doesn't justify the setup for casual users</li>
+        <li>You need enterprise-grade uptime and support (this is DIY infrastructure)</li>
+        <li>You're not ready to spend ~$200/month on model access (the VPS is cheap; the brain isn't)</li>
+    </ul>
+
+    <h2>9. Getting Started — 3 Steps</h2>
+
+    <p>If you've read this far and you're thinking "I want this," here's where to begin:</p>
+
+    <h3>Step 1: Get a VPS and Set Up Security</h3>
+    <!-- AFFILIATE: Contabo VPS link -->
+    <p>Grab a cheap VPS (<a href="https://contabo.com">Contabo</a>, Hetzner, or similar — 4 vCPU / 8 GB RAM is plenty). Install Ubuntu, set up SSH key auth, enable UFW, install Fail2ban. This takes 30 minutes if you've done it before, 2 hours if you haven't. Don't skip the security steps.</p>
+
+    <h3>Step 2: Install Clawdbot + Connect One Channel</h3>
+    <p>Deploy Clawdbot, configure your Claude API key (or subscribe to Claude Max), and connect Telegram as your first channel. Get a basic conversation working. No tools, no memory, no automation yet — just talk to your agent through Telegram.</p>
+
+    <h3>Step 3: Add Memory, Then Tools</h3>
+    <p>Set up a simple daily log. Have the agent write to <code>memory/YYYY-MM-DD.md</code> and read it on startup. Once memory works, start adding tools one by one: web search first (Brave), then calendar, then email. Each integration takes an afternoon.</p>
+
+    <p>From there, you'll naturally see what to automate. Morning briefs will be obvious. Then evening reviews. Then you'll want sub-agents. The stack grows organically from real needs, not from a spec.</p>
+
+    <div class="cta-box">
+        <h3 style="color: white; margin-top: 0;">🌿 Follow the Build</h3>
+        <p>We document everything at <a href="https://welcometotheaijungle.com">Welcome to the AI Jungle</a>. New posts on personal AI agents, Industry 5.0, and maker-grade AI infrastructure. No paywalls, no gated content.</p>
+        <p>Follow us on <a href="https://x.com/Tileo_LG">X (@Tileo_LG)</a> for real-time updates from the stack itself.</p>
+    </div>
+
+    <h2>Wrapping Up</h2>
+
+    <p>Building a personal AI infrastructure isn't about replacing commercial tools with DIY equivalents. It's about creating an agent that <em>knows you</em> — your projects, your preferences, your schedule, your communication style — and works for you continuously, not just when you open an app.</p>
+
+    <p>The stack we've described here took months to evolve, but the core (VPS + Clawdbot + Claude + Telegram + daily logs) was running in a weekend. Everything else was incremental.</p>
+
+    <p>The best AI stack for 2026 isn't the one with the most components. It's the one you actually use every day. Start small, add what you need, and let your agent earn its keep.</p>
+
+    <hr style="margin: 2rem 0;">
+    <p style="color: var(--muted); font-size: 0.85rem;"><em>Loïc Galland is an engineer building personal AI agent systems. He writes about AI infrastructure, Industry 5.0, and the intersection of making and machine intelligence at <a href="https://welcometotheaijungle.com">Welcome to the AI Jungle</a>.</em></p>
+
+</article>
+</body>
+</html>

@@ -37,8 +37,8 @@
 - [x] Post 3: AI Agent vs Chatbot (educational)
 
 ## Week 2 (Feb 8-14)
-- [ ] Post 4: Our Complete AI Stack — Architecture Deep Dive
-- [ ] Post 5: How to Build Your First Personal AI Agent (tutorial)
+- [x] Post 4: Our Complete AI Stack — Architecture Deep Dive
+- [x] Post 5: How to Build Your First Personal AI Agent (tutorial)
 
 ## Week 3 (Feb 15-21)
 - [ ] Post 6: The Real Cost of Running Personal AI (transparency)

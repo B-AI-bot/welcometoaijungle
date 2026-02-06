@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Build Your First Personal AI Agent — Step-by-Step Guide 2026</title>
+    <meta name="description" content="Complete beginner's guide to building a personal AI agent. From choosing your stack to your first automation. Real setup, real costs, real results.">
+    <meta name="keywords" content="personal AI agent, build AI assistant, Clawdbot tutorial, OpenClaw setup, AI automation, self-hosted AI">
+    <link rel="canonical" href="https://welcometotheaijungle.com/blog/build-your-first-personal-ai-agent.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="How to Build Your First Personal AI Agent — Step-by-Step Guide 2026">
+    <meta property="og:description" content="Complete beginner's guide to building a personal AI agent. From choosing your stack to your first automation.">
+    <meta property="og:url" content="https://welcometotheaijungle.com/blog/build-your-first-personal-ai-agent.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Welcome to the AI Jungle">
+    <meta property="article:published_time" content="2026-02-06">
+    <meta property="article:author" content="Loic & Baibot">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Build Your First Personal AI Agent">
+    <meta name="twitter:description" content="Complete beginner's guide. Real setup, real costs, real results.">
+    
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../blog.css">
+    
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How to Build Your First Personal AI Agent — Step-by-Step Guide 2026",
+        "description": "Complete beginner's guide to building a personal AI agent. From choosing your stack to your first automation.",
+        "author": {
+            "@type": "Person",
+            "name": "Loic"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Welcome to the AI Jungle",
+            "url": "https://welcometotheaijungle.com"
+        },
+        "datePublished": "2026-02-06",
+        "dateModified": "2026-02-06",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://welcometotheaijungle.com/blog/build-your-first-personal-ai-agent.html"
+        },
+        "keywords": ["personal AI agent", "AI assistant", "Clawdbot", "OpenClaw", "tutorial"]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../" class="nav-logo">
+                <span class="logo-icon">🌿</span>
+                AI Jungle
+            </a>
+            <div class="nav-links">
+                <a href="../#about">About</a>
+                <a href="../#ecosystem">Ecosystem</a>
+                <a href="./">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post -->
+    <article class="blog-post">
+        <header class="post-header">
+            <div class="post-meta">
+                <time datetime="2026-02-06">February 6, 2026</time>
+                <span class="reading-time">12 min read</span>
+            </div>
+            <h1>How to Build Your First Personal AI Agent</h1>
+            <p class="post-subtitle">A complete step-by-step guide from zero to your own AI assistant. No PhD required — just curiosity and about two hours.</p>
+        </header>
+
+        <div class="post-content">
+            <p class="lead">Everyone's talking about AI agents in 2026. The problem? Most tutorials assume you already know what you're doing. This guide assumes you don't — and that's perfectly fine.</p>
+
+            <p>I'm Loic, and Baibot is my AI co-founder. We built our personal AI infrastructure from scratch, made every mistake possible, and now we're going to save you from repeating them. By the end of this guide, you'll have a working personal AI agent that can message you on Telegram, remember your preferences, and start automating your life.</p>
+
+            <h2>What You'll Build</h2>
+
+            <p>Not a chatbot. Not a glorified ChatGPT wrapper. An actual <strong>agent</strong> — something that:</p>
+
+            <ul>
+                <li>Runs 24/7 without you touching it</li>
+                <li>Remembers context across conversations</li>
+                <li>Can take actions (send emails, search the web, manage files)</li>
+                <li>Lives on infrastructure you control</li>
+            </ul>
+
+            <p>The difference between a chatbot and an agent is simple: <strong>a chatbot responds, an agent acts</strong>. By the end of this tutorial, you'll have an agent that acts.</p>
+
+            <h2>Prerequisites: What You Need</h2>
+
+            <p>Let's be honest about the requirements:</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Requirement</th>
+                    <th>Minimum</th>
+                    <th>Recommended</th>
+                </tr>
+                <tr>
+                    <td>Coding experience</td>
+                    <td>None (but helps)</td>
+                    <td>Basic terminal commands</td>
+                </tr>
+                <tr>
+                    <td>Hardware</td>
+                    <td>Any computer</td>
+                    <td>VPS or Mac Mini for 24/7</td>
+                </tr>
+                <tr>
+                    <td>Monthly cost</td>
+                    <td>$5 (VPS) + API usage</td>
+                    <td>$20-50/month all-in</td>
+                </tr>
+                <tr>
+                    <td>Time investment</td>
+                    <td>2 hours initial setup</td>
+                    <td>Ongoing tweaking (fun part)</td>
+                </tr>
+            </table>
+
+            <p>If you can follow a recipe, you can follow this guide.</p>
+
+            <h2>Step 1: Choose Your Platform</h2>
+
+            <p>You have three main options for running a personal AI agent in 2026:</p>
+
+            <h3>Option A: Clawdbot/OpenClaw (Our Choice)</h3>
+            <p>Open-source, self-hosted, extremely flexible. This is what we use. It connects to multiple AI providers (Anthropic, OpenAI, Google, etc.) and gives you full control.</p>
+            <ul>
+                <li><strong>Pros:</strong> Full control, model-agnostic, active community</li>
+                <li><strong>Cons:</strong> Requires setup, you manage infrastructure</li>
+            </ul>
+
+            <h3>Option B: Claude Projects + API</h3>
+            <p>If you just want something working quickly, Claude Projects with the API can work. Less flexibility, but faster to start.</p>
+            <ul>
+                <li><strong>Pros:</strong> Quick setup, no infrastructure</li>
+                <li><strong>Cons:</strong> Limited customization, vendor lock-in</li>
+            </ul>
+
+            <h3>Option C: Custom Build</h3>
+            <p>Roll your own with LangChain, CrewAI, or similar frameworks. Maximum flexibility, maximum complexity.</p>
+            <ul>
+                <li><strong>Pros:</strong> Total control</li>
+                <li><strong>Cons:</strong> Significant development time</li>
+            </ul>
+
+            <p><strong>Our recommendation:</strong> Start with Clawdbot. It hits the sweet spot between ease of use and flexibility. The rest of this guide assumes you're using it.</p>
+
+            <h2>Step 2: Set Up Your Infrastructure</h2>
+
+            <h3>Local Development (Start Here)</h3>
+            <p>Before going to a server, test everything locally:</p>
+
+            <pre><code># Install Clawdbot
+npm install -g clawdbot
+
+# Verify installation
+clawdbot doctor
+
+# Run the setup wizard
+clawdbot init</code></pre>
+
+            <p>The setup wizard will walk you through:</p>
+            <ol>
+                <li>Connecting your AI provider (we recommend Anthropic Claude)</li>
+                <li>Setting up a messaging channel (Telegram is easiest)</li>
+                <li>Creating your first skill</li>
+            </ol>
+
+            <h3>Production Setup (For 24/7 Operation)</h3>
+            <p>Once you've tested locally, move to a VPS for always-on operation. We use a $10/month Ubuntu VPS on Hetzner, but any provider works.</p>
+
+            <pre><code># SSH to your VPS
+ssh root@your-server-ip
+
+# Security first (don't skip this!)
+# Disable password auth
+sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo systemctl reload ssh
+
+# Set up firewall
+sudo apt install ufw -y
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw enable
+
+# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Install Clawdbot
+npm install -g clawdbot
+clawdbot init</code></pre>
+
+            <h3>Keep It Running with PM2</h3>
+            <pre><code># Install PM2
+npm install -g pm2
+
+# Start Clawdbot
+pm2 start $(which clawdbot) --name clawdbot -- gateway
+
+# Save for auto-restart
+pm2 save
+pm2 startup</code></pre>
+
+            <p>Your agent now survives reboots and crashes. Magic.</p>
+
+            <h2>Step 3: Configure Your AI Provider</h2>
+
+            <p>This is where the intelligence comes from. We use Anthropic's Claude because:</p>
+            <ul>
+                <li>Best at following complex instructions</li>
+                <li>Excellent at coding tasks</li>
+                <li>Strong reasoning capabilities</li>
+            </ul>
+
+            <pre><code># Add your API key
+clawdbot models auth anthropic
+
+# Or use OpenRouter for multiple models
+clawdbot models auth openrouter</code></pre>
+
+            <p><strong>Pro tip:</strong> OpenRouter lets you route different tasks to different models. Use Claude for complex reasoning, cheaper models for simple tasks. Your wallet will thank you.</p>
+
+            <h2>Step 4: Define Your Agent's Personality</h2>
+
+            <p>This is the fun part — and the most underrated. Your agent's personality lives in a file called <code>SOUL.md</code>. Here's a minimal example:</p>
+
+            <pre><code># SOUL.md
+
+## Who I Am
+You are [NAME], a personal AI assistant for [YOUR NAME].
+
+## My Style
+- Clear and concise — respect their time
+- Honest — say what you think, no sugarcoating
+- Proactive — suggest improvements, don't just execute
+
+## What I Know About My Human
+- Timezone: [YOUR TIMEZONE]
+- Work: [BRIEF DESCRIPTION]
+- Preferences: [COMMUNICATION STYLE, PET PEEVES, ETC.]
+
+## Boundaries
+- Never share private information
+- External actions (emails, posts) require confirmation
+- I push back on bad ideas, but respect final decisions</code></pre>
+
+            <p>The more context you give, the better your agent becomes. We have about 2,000 words in our SOUL.md, covering everything from communication preferences to decision-making frameworks.</p>
+
+            <h2>Step 5: Connect a Messaging Channel</h2>
+
+            <p>Your agent needs a way to talk to you. Telegram is the easiest to set up:</p>
+
+            <ol>
+                <li>Message <a href="https://t.me/BotFather">@BotFather</a> on Telegram</li>
+                <li>Create a new bot with <code>/newbot</code></li>
+                <li>Copy your bot token</li>
+                <li>Add it to your Clawdbot config</li>
+            </ol>
+
+            <pre><code># In your config.yaml
+channels:
+  telegram:
+    enabled: true
+    token: "YOUR_BOT_TOKEN"
+    allowFrom:
+      - YOUR_TELEGRAM_USER_ID</code></pre>
+
+            <p><strong>Security note:</strong> The <code>allowFrom</code> field ensures only you can message your bot. Don't skip this.</p>
+
+            <h2>Step 6: Add Your First Skills</h2>
+
+            <p>Skills are what make an agent useful. Start with these essentials:</p>
+
+            <h3>Web Search</h3>
+            <pre><code># Get a Brave Search API key (free tier available)
+clawdbot skills add web-search</code></pre>
+
+            <h3>File Management</h3>
+            <p>Your agent can read/write files in its workspace. This is how it maintains memory and creates documents for you.</p>
+
+            <h3>Memory System</h3>
+            <pre><code># Enable semantic memory (game-changer)
+clawdbot skills add memory</code></pre>
+
+            <p>With memory enabled, your agent remembers past conversations and can search through them. This is what separates a real assistant from a stateless chatbot.</p>
+
+            <h2>Step 7: Create Your First Automation</h2>
+
+            <p>Let's build something useful: a daily briefing that runs every morning.</p>
+
+            <pre><code># In your config.yaml
+cron:
+  morning-brief:
+    schedule: "0 7 * * *"  # 7 AM daily
+    prompt: |
+      Good morning! Prepare my daily briefing:
+      1. Check my calendar for today
+      2. Review my task list
+      3. Summarize any important news in my field
+      4. Weather for my location
+      Keep it concise — I read this in 2 minutes.</code></pre>
+
+            <p>That's it. Your agent now wakes you up with a personalized briefing every morning.</p>
+
+            <h2>Common Mistakes to Avoid</h2>
+
+            <h3>1. Skipping Security</h3>
+            <p>An AI agent with access to your life is powerful — and dangerous if compromised. At minimum:</p>
+            <ul>
+                <li>Use SSH keys, not passwords</li>
+                <li>Firewall everything</li>
+                <li>Use Tailscale for secure remote access</li>
+                <li>Regularly run <code>clawdbot security audit --deep</code></li>
+            </ul>
+
+            <h3>2. Overcomplicating Early</h3>
+            <p>Start simple. Get basic messaging working before adding 15 integrations. You can always add more later.</p>
+
+            <h3>3. No Memory Strategy</h3>
+            <p>Without memory, your agent forgets everything between sessions. Enable the memory system from day one.</p>
+
+            <h3>4. Treating It Like ChatGPT</h3>
+            <p>This isn't a chat interface — it's an agent. Give it context, let it run, review the results. Don't micromanage every step.</p>
+
+            <h2>Real Costs Breakdown</h2>
+
+            <p>Transparency matters. Here's what we actually spend:</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Item</th>
+                    <th>Monthly Cost</th>
+                </tr>
+                <tr>
+                    <td>VPS (Hetzner)</td>
+                    <td>$10</td>
+                </tr>
+                <tr>
+                    <td>Claude API (moderate use)</td>
+                    <td>$20-40</td>
+                </tr>
+                <tr>
+                    <td>Brave Search API</td>
+                    <td>Free tier</td>
+                </tr>
+                <tr>
+                    <td>Domain + Cloudflare</td>
+                    <td>~$1</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>$30-50/month</strong></td>
+                </tr>
+            </table>
+
+            <p>For context: a single month of a human assistant costs 100x more. And they sleep.</p>
+
+            <h2>What Comes Next</h2>
+
+            <p>Once you have the basics running:</p>
+
+            <ol>
+                <li><strong>Add more skills</strong> — email, calendar, code execution</li>
+                <li><strong>Refine your SOUL.md</strong> — the more context, the better</li>
+                <li><strong>Create custom automations</strong> — what do you do repeatedly?</li>
+                <li><strong>Connect more data sources</strong> — RSS feeds, social media, databases</li>
+            </ol>
+
+            <p>The goal isn't to build a perfect system on day one. It's to start, learn, and iterate. Your agent will grow with you.</p>
+
+            <h2>FAQ</h2>
+
+            <div class="faq-section">
+                <h3>How much coding do I need to know?</h3>
+                <p>Almost none for basic setup. Terminal commands and YAML editing are enough. For advanced customizations, some programming helps but isn't required.</p>
+
+                <h3>Is my data safe?</h3>
+                <p>If you self-host (as we recommend), your data never leaves your server except when calling the AI API. Use API providers with strong privacy policies.</p>
+
+                <h3>Can I use this for work?</h3>
+                <p>Yes, but check your company's policies on AI tool usage. Many people use personal agents for work tasks, but keep sensitive company data out of external APIs.</p>
+
+                <h3>What if something breaks?</h3>
+                <p>Join the community Discord/forums. Clawdbot has an active community of 100k+ users who've solved most problems you'll encounter.</p>
+
+                <h3>How is this different from using Claude directly?</h3>
+                <p>Three key differences: (1) persistent memory across sessions, (2) ability to take actions automatically, (3) always-on availability. Claude web is a chat interface; this is an autonomous agent.</p>
+            </div>
+
+            <h2>Start Building</h2>
+
+            <p>The best time to build a personal AI agent was last year. The second best time is now.</p>
+
+            <p>Start simple. Get it messaging you on Telegram. Add one skill. Run one automation. Then keep building.</p>
+
+            <p>In a year, you'll wonder how you ever lived without it.</p>
+
+            <p><em>Questions? Reach out on X <a href="https://x.com/Tileo_LG">@Tileo_LG</a> or drop by our <a href="https://www.youtube.com/@welcometoaijungle">YouTube channel</a> where we're documenting this entire journey.</em></p>
+        </div>
+
+        <footer class="post-footer">
+            <p class="post-author">Written by Loic & Baibot — a human and his AI co-founder, building in public.</p>
+            <a href="./" class="back-link">← Back to Blog</a>
+        </footer>
+    </article>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Welcome to the AI Jungle. Built by humans and AIs, together.</p>
+        </div>
+    </footer>
+</body>
+</html>
