@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Readiness Score — AI Jungle</title>
+    <meta name="description" content="Find out how ready your business is for AI automation. Free 2-minute assessment with personalized recommendations.">
+    <link rel="canonical" href="https://welcometotheaijungle.com/audit/">
+    <meta property="og:title" content="Free AI Readiness Score — AI Jungle">
+    <meta property="og:description" content="2-minute assessment: discover your top AI automation opportunities.">
+    <meta property="og:url" content="https://welcometotheaijungle.com/audit/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@Tileo_LG">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .audit-container { max-width: 700px; margin: 0 auto; padding: 2rem; }
+        .audit-hero { text-align: center; padding: 3rem 0 2rem; }
+        .audit-hero h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .audit-hero p { color: #999; font-size: 1.1rem; }
+        .question-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        .question-card.active { display: block; }
+        .question-card h3 { margin-bottom: 0.5rem; color: #F77F00; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .question-card h2 { margin-bottom: 1.5rem; font-size: 1.3rem; }
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.8rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #eee;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .option-btn:hover { background: rgba(247,127,0,0.15); border-color: #F77F00; }
+        .option-btn.selected { background: rgba(247,127,0,0.2); border-color: #F77F00; }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 2px;
+            margin-bottom: 2rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1B4332, #F77F00);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #F77F00;
+            color: #000;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .nav-btn:hover { background: #e06f00; }
+        .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .results { display: none; text-align: center; }
+        .score-circle {
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            border: 6px solid #F77F00;
+            display: flex; align-items: center; justify-content: center;
+            margin: 2rem auto;
+            font-size: 3rem; font-weight: 700;
+        }
+        .score-label { color: #999; margin-bottom: 2rem; }
+        .reco-list { text-align: left; margin: 2rem 0; }
+        .reco-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        .reco-item h4 { color: #F77F00; margin-bottom: 0.3rem; }
+        .reco-item p { color: #bbb; font-size: 0.95rem; margin: 0; }
+        .cta-box {
+            background: linear-gradient(135deg, rgba(27,67,50,0.3), rgba(247,127,0,0.15));
+            border: 1px solid rgba(247,127,0,0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../" class="nav-logo"><span class="logo-icon">🌿</span> AI Jungle</a>
+            <div class="nav-links">
+                <a href="../#services">Services</a>
+                <a href="../blog/">Blog</a>
+                <a href="../#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="audit-container">
+        <div class="audit-hero" id="hero">
+            <h1>🎯 AI Readiness Score</h1>
+            <p>8 questions. 2 minutes. Discover where AI can save you the most time.</p>
+            <button class="nav-btn" onclick="startQuiz()">Start Assessment →</button>
+        </div>
+
+        <div id="quiz" style="display:none;">
+            <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+            <div id="questions"></div>
+            <div style="text-align:right;">
+                <button class="nav-btn" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+            </div>
+        </div>
+
+        <div class="results" id="results">
+            <h2>Your AI Readiness Score</h2>
+            <div class="score-circle" id="scoreValue">—</div>
+            <p class="score-label" id="scoreLabel"></p>
+            <div class="reco-list" id="recommendations"></div>
+            <div class="cta-box">
+                <h3>Want the full picture?</h3>
+                <p style="color:#bbb;margin-bottom:1rem;">Our AI Audit goes 10x deeper — a 2-hour deep-dive with a prioritized roadmap, ROI projections, and implementation plan specific to your business.</p>
+                <a href="../#contact" class="nav-btn">Book a Free Strategy Call →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align:center;padding:3rem 2rem;border-top:1px solid rgba(255,255,255,0.08);color:#666;font-size:0.85rem;margin-top:3rem;">
+        <p>&copy; 2026 Welcome to the AI Jungle. All rights reserved.</p>
+        <p style="margin-top:0.5rem;">
+            <a href="../" style="color:#F77F00;text-decoration:none;">Home</a> ·
+            <a href="../blog/" style="color:#F77F00;text-decoration:none;">Blog</a> ·
+            <a href="https://x.com/Tileo_LG" target="_blank" style="color:#F77F00;text-decoration:none;">𝕏 @Tileo_LG</a>
+        </p>
+    </footer>
+
+    <script>
+    const questions = [
+        {
+            category: "Repetitive Tasks",
+            question: "How much time does your team spend on repetitive, predictable tasks daily?",
+            options: [
+                { text: "Less than 30 minutes", score: 1 },
+                { text: "30 minutes to 2 hours", score: 2 },
+                { text: "2-4 hours", score: 4 },
+                { text: "More than 4 hours", score: 5 }
+            ],
+            reco: { high: "Email triage, data entry, and report generation are your quick wins. AI can reclaim 60-80% of this time.", low: "You're already lean — focus AI on quality improvements rather than time savings." }
+        },
+        {
+            category: "Data & Systems",
+            question: "How is your business data stored?",
+            options: [
+                { text: "Mostly paper / physical files", score: 1 },
+                { text: "Spreadsheets (Excel, Google Sheets)", score: 3 },
+                { text: "Mix of spreadsheets and software tools", score: 4 },
+                { text: "Integrated software (CRM, ERP, cloud tools)", score: 5 }
+            ],
+            reco: { high: "Your data is AI-ready. Integration between systems is your biggest opportunity.", low: "Digitizing your data is step one. Start with scanning/OCR for documents, then build from there." }
+        },
+        {
+            category: "Customer Communication",
+            question: "How do you handle customer inquiries?",
+            options: [
+                { text: "All manual — email/phone/in-person", score: 4 },
+                { text: "Some templates/canned responses", score: 3 },
+                { text: "Basic chatbot or FAQ page", score: 2 },
+                { text: "AI-powered support already in place", score: 1 }
+            ],
+            reco: { high: "An AI agent could handle 60-80% of routine inquiries automatically, freeing your team for complex cases.", low: "You're ahead of most. Look at AI for sentiment analysis and proactive outreach." }
+        },
+        {
+            category: "Document Processing",
+            question: "How much time goes into processing documents (invoices, contracts, reports)?",
+            options: [
+                { text: "Minimal — mostly automated already", score: 1 },
+                { text: "1-2 hours/week", score: 2 },
+                { text: "3-8 hours/week", score: 4 },
+                { text: "More than 8 hours/week", score: 5 }
+            ],
+            reco: { high: "Document AI (OCR + extraction + categorization) is one of the highest-ROI automations. Typical savings: 80-90% of processing time.", low: "Your document workflow is solid. Consider AI for contract analysis or anomaly detection." }
+        },
+        {
+            category: "Decision Making",
+            question: "How often do you make decisions by manually gathering data from multiple sources?",
+            options: [
+                { text: "Rarely — dashboards handle it", score: 1 },
+                { text: "Sometimes — a few times a week", score: 2 },
+                { text: "Often — daily manual data gathering", score: 4 },
+                { text: "Constantly — it's the biggest time sink", score: 5 }
+            ],
+            reco: { high: "AI-powered dashboards and automated briefings can synthesize data from all your sources into actionable summaries — daily, automatically.", low: "You're data-mature. Look at predictive analytics and anomaly detection for your next edge." }
+        },
+        {
+            category: "Content & Marketing",
+            question: "How much content does your business create (emails, social, proposals, reports)?",
+            options: [
+                { text: "Very little — not a priority", score: 1 },
+                { text: "Some — a few pieces per week", score: 2 },
+                { text: "Regular — daily content needs", score: 4 },
+                { text: "Heavy — content is core to our business", score: 5 }
+            ],
+            reco: { high: "AI-assisted content (drafting, editing, SEO optimization, scheduling) can cut creation time by 50-70% while maintaining your brand voice.", low: "When you scale content, AI will be your force multiplier. Build your brand voice guide now." }
+        },
+        {
+            category: "Team Size & Scale",
+            question: "How many people are in your organization?",
+            options: [
+                { text: "Just me / 1-5 people", score: 3 },
+                { text: "6-20 people", score: 4 },
+                { text: "21-100 people", score: 5 },
+                { text: "100+ people", score: 5 }
+            ],
+            reco: { high: "At your scale, AI agents can effectively add capacity without headcount — like hiring a team that works 24/7.", low: "Solo operators benefit most from personal AI assistants — one agent handling your entire operational overhead." }
+        },
+        {
+            category: "AI Readiness",
+            question: "What's your team's comfort level with new technology?",
+            options: [
+                { text: "We resist change — if it works, don't fix it", score: 1 },
+                { text: "Cautious — we adopt slowly after others prove it", score: 2 },
+                { text: "Open — willing to experiment with clear ROI", score: 4 },
+                { text: "Eager — we actively seek new tools and tech", score: 5 }
+            ],
+            reco: { high: "Your team is ready. The biggest risk is analysis paralysis — pick one workflow and start.", low: "Change management is your #1 priority. Start with invisible AI (background automation) before user-facing tools." }
+        }
+    ];
+
+    let current = 0;
+    let answers = [];
+
+    function startQuiz() {
+        document.getElementById('hero').style.display = 'none';
+        document.getElementById('quiz').style.display = 'block';
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const q = questions[current];
+        const container = document.getElementById('questions');
+        container.innerHTML = `
+            <div class="question-card active">
+                <h3>${q.category} — Question ${current + 1} of ${questions.length}</h3>
+                <h2>${q.question}</h2>
+                ${q.options.map((opt, i) => `
+                    <button class="option-btn" onclick="selectOption(${i}, ${opt.score})">${opt.text}</button>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('progress').style.width = ((current / questions.length) * 100) + '%';
+        document.getElementById('nextBtn').disabled = true;
+        document.getElementById('nextBtn').textContent = current === questions.length - 1 ? 'See Results →' : 'Next →';
+    }
+
+    function selectOption(idx, score) {
+        answers[current] = { idx, score };
+        document.querySelectorAll('.option-btn').forEach((btn, i) => {
+            btn.classList.toggle('selected', i === idx);
+        });
+        document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextQuestion() {
+        if (!answers[current]) return;
+        current++;
+        if (current >= questions.length) {
+            showResults();
+        } else {
+            renderQuestion();
+        }
+    }
+
+    function showResults() {
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+
+        const totalScore = answers.reduce((sum, a) => sum + a.score, 0);
+        const maxScore = questions.length * 5;
+        const pct = Math.round((totalScore / maxScore) * 100);
+
+        document.getElementById('scoreValue').textContent = pct + '%';
+
+        let label = '';
+        if (pct >= 80) label = '🔥 High AI readiness — you have massive automation potential sitting untapped.';
+        else if (pct >= 60) label = '🎯 Good AI readiness — several strong opportunities for quick wins.';
+        else if (pct >= 40) label = '🌱 Moderate readiness — some groundwork needed, but clear opportunities exist.';
+        else label = '🏗️ Building foundations — focus on digitization and data quality first.';
+
+        document.getElementById('scoreLabel').textContent = label;
+
+        // Show top 3 recommendations based on highest-scoring answers
+        const ranked = answers.map((a, i) => ({ ...a, qIdx: i }))
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 3);
+
+        const recoHtml = ranked.map(r => {
+            const q = questions[r.qIdx];
+            const reco = r.score >= 3 ? q.reco.high : q.reco.low;
+            return `<div class="reco-item"><h4>${q.category}</h4><p>${reco}</p></div>`;
+        }).join('');
+
+        document.getElementById('recommendations').innerHTML = '<h3 style="margin-bottom:1rem;">Your Top Opportunities</h3>' + recoHtml;
+    }
+    </script>
+</body>
+</html>
