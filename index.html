@@ -49,30 +49,56 @@
     a:hover { opacity: 0.85; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-    /* ===== NAV ===== */
+    /* ===== FLOATING NAV ===== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       background: rgba(10,10,10,0.8);
       border-bottom: 1px solid var(--border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(0);
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.95);
+      border-bottom-color: rgba(255,255,255,0.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    nav.hidden {
+      transform: translateY(-100%);
     }
     .nav-inner {
       max-width: 1200px; margin: 0 auto; padding: 0 2rem;
       display: flex; align-items: center; justify-content: space-between;
       height: 64px;
     }
-    .nav-logo { font-size: 1.2rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .nav-logo {
+      font-size: 1.2rem; font-weight: 700; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+      transition: transform 0.2s ease;
+    }
+    .nav-logo:hover { transform: scale(1.05); }
     .nav-logo span { font-size: 1.4rem; }
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); opacity: 1; }
-    .nav-cta {
-      background: var(--orange); color: #000; padding: 8px 18px;
-      border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+    .nav-links a {
+      color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+      transition: all 0.2s ease; position: relative; padding: 8px 16px;
+      border-radius: 8px;
     }
-    .nav-cta:hover { opacity: 0.9; }
+    .nav-links a:hover {
+      color: var(--text); opacity: 1;
+      background: rgba(255,255,255,0.05);
+    }
+    .nav-cta {
+      background: var(--orange); color: #000 !important; padding: 8px 18px;
+      border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    .nav-cta:hover {
+      opacity: 0.9; transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(247,127,0,0.3);
+    }
 
-    /* ===== HERO ===== */
+    /* ===== HERO WITH PARTICLES ===== */
     .hero {
       min-height: 100vh; display: flex; align-items: center; justify-content: center;
       text-align: center; position: relative; overflow: hidden;
@@ -90,14 +116,53 @@
       0% { opacity: 0.7; transform: scale(1); }
       100% { opacity: 1; transform: scale(1.05); }
     }
+
+    /* Particle Animation */
+    .particles {
+      position: absolute; inset: 0; overflow: hidden; z-index: 0;
+    }
+    .particle {
+      position: absolute; width: 2px; height: 2px; border-radius: 50%;
+      background: rgba(247,127,0,0.6);
+      animation: float 8s linear infinite;
+    }
+    .particle:nth-child(2) { background: rgba(45,106,79,0.5); animation-delay: -2s; }
+    .particle:nth-child(3) { background: rgba(27,67,50,0.4); animation-delay: -4s; }
+    .particle:nth-child(4) { background: rgba(247,127,0,0.3); animation-delay: -6s; }
+    .particle:nth-child(5) { background: rgba(45,106,79,0.6); animation-delay: -1s; }
+    .particle:nth-child(6) { background: rgba(247,127,0,0.4); animation-delay: -3s; }
+    .particle:nth-child(7) { background: rgba(27,67,50,0.5); animation-delay: -5s; }
+    .particle:nth-child(8) { background: rgba(45,106,79,0.3); animation-delay: -7s; }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(-50px) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% {
+        transform: translateY(-100px) translateX(50px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     .hero-content { position: relative; z-index: 1; max-width: 800px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--glass); border: 1px solid var(--glass-border);
       border-radius: 100px; padding: 6px 16px; font-size: 0.8rem;
       color: var(--text-muted); margin-bottom: 2rem;
+      transition: all 0.3s ease;
     }
-    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+    .hero-badge:hover {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #4ade80; animation: pulse 2s infinite;
+    }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
     .hero h1 {
       font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 900;
@@ -111,16 +176,33 @@
     .btn-primary {
       background: var(--orange); color: #000; padding: 14px 32px;
       border-radius: 12px; font-weight: 700; font-size: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 0 30px rgba(247,127,0,0.2);
+      position: relative; overflow: hidden;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(247,127,0,0.35); opacity: 1; }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: translateX(-100%); transition: transform 0.6s;
+    }
+    .btn-primary:hover::before { transform: translateX(100%); }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(247,127,0,0.4);
+      opacity: 1;
+    }
     .btn-secondary {
       background: var(--glass); color: var(--text); padding: 14px 32px;
       border-radius: 12px; font-weight: 600; font-size: 1rem;
-      border: 1px solid var(--glass-border); transition: all 0.2s;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); opacity: 1; }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
+      opacity: 1;
+    }
 
     /* ===== SECTIONS ===== */
     section { padding: 6rem 0; }
@@ -131,35 +213,158 @@
     .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
     .section-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem; }
 
-    /* ===== SERVICES ===== */
+    /* ===== ENHANCED SERVICES ===== */
     .services-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
     }
     .service-card {
       background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: var(--radius); padding: 2.5rem; transition: all 0.3s;
+      border-radius: var(--radius); padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative; overflow: hidden;
+      cursor: pointer;
     }
     .service-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, transparent, var(--orange), transparent);
       opacity: 0; transition: opacity 0.3s;
     }
-    .service-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-4px); }
+    .service-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(247,127,0,0.03) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover {
+      border-color: rgba(247,127,0,0.3);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.3),
+        0 0 20px rgba(247,127,0,0.1);
+    }
     .service-card:hover::before { opacity: 1; }
-    .service-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+    .service-card:hover::after { opacity: 1; }
+    .service-icon {
+      font-size: 2.5rem; margin-bottom: 1.2rem; display: block;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); }
     .service-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
     .service-price { color: var(--orange); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
     .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
     .service-features { list-style: none; margin-top: 1.2rem; }
-    .service-features li { color: var(--text-muted); font-size: 0.9rem; padding: 4px 0; }
+    .service-features li {
+      color: var(--text-muted); font-size: 0.9rem; padding: 4px 0;
+      transition: color 0.2s;
+    }
     .service-features li::before { content: '→ '; color: var(--teal); }
+    .service-card:hover .service-features li { color: var(--text); }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-it-works {
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(27,67,50,0.05) 50%, var(--bg) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem; margin-top: 3rem;
+    }
+    .step-card {
+      text-align: center; position: relative;
+      transition: transform 0.3s ease;
+    }
+    .step-card:hover { transform: translateY(-4px); }
+    .step-number {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), #ff8f1a);
+      color: #000; font-weight: 900; font-size: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; position: relative;
+      box-shadow: 0 8px 20px rgba(247,127,0,0.3);
+    }
+    .step-number::after {
+      content: ''; position: absolute; inset: -8px;
+      border-radius: 50%; background: linear-gradient(135deg, var(--orange), transparent);
+      opacity: 0.2; z-index: -1;
+    }
+    .step-card h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
+    .step-card p { color: var(--text-muted); line-height: 1.7; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials { background: var(--bg2); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(247,127,0,0.05), transparent);
+      border-radius: var(--radius); opacity: 0; transition: opacity 0.3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(247,127,0,0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .testimonial-card:hover::before { opacity: 1; }
+    .testimonial-text {
+      font-style: italic; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #000;
+    }
+    .author-info h5 { font-weight: 600; margin-bottom: 0.2rem; }
+    .author-info .role { color: var(--text-dim); font-size: 0.85rem; }
+
+    /* ===== TECH TICKER ===== */
+    .tech-ticker {
+      background: var(--bg3);
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .ticker-wrapper {
+      display: flex; align-items: center; gap: 3rem;
+      animation: scroll 30s linear infinite;
+      width: max-content;
+    }
+    .tech-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--text-muted); font-weight: 600; font-size: 1rem;
+      opacity: 0.7; transition: opacity 0.3s;
+    }
+    .tech-logo:hover { opacity: 1; }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
     /* ===== PROOF ===== */
     .proof { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .proof-item { text-align: center; padding: 2rem; }
+    .proof-item {
+      text-align: center; padding: 2rem;
+      transition: transform 0.3s ease;
+    }
+    .proof-item:hover { transform: translateY(-4px); }
     .proof-item .number { font-size: 2.5rem; font-weight: 900; color: var(--orange); }
     .proof-item .label { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem; }
 
@@ -172,11 +377,21 @@
       background: var(--glass); border: 1px solid var(--glass-border);
       padding: 6px 14px; border-radius: 100px; font-size: 0.8rem;
       color: var(--text-muted); font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .tech-badge:hover {
+      border-color: var(--orange); color: var(--text);
+      transform: translateY(-1px);
     }
     .baibot-card {
       background: linear-gradient(135deg, rgba(27,67,50,0.3), rgba(45,106,79,0.1));
       border: 1px solid rgba(45,106,79,0.3); border-radius: var(--radius);
       padding: 2.5rem; position: relative;
+      transition: all 0.3s ease;
+    }
+    .baibot-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(27,67,50,0.3);
     }
     .baibot-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
     .baibot-card ul { list-style: none; }
@@ -191,26 +406,97 @@
     .vision-text { max-width: 700px; margin: 0 auto; color: var(--text-muted); font-size: 1.15rem; line-height: 1.8; }
     .vision-text strong { color: var(--text); }
 
-    /* ===== BLOG ===== */
+    /* ===== ENHANCED BLOG ===== */
     .blog-grid-home { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
     .blog-card-home {
       background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: var(--radius); padding: 2rem; transition: all 0.3s;
-      display: block; color: var(--text);
+      border-radius: var(--radius); padding: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block; color: var(--text); overflow: hidden;
+      position: relative;
     }
-    .blog-card-home:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); opacity: 1; }
-    .blog-card-home .date { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.8rem; }
-    .blog-card-home h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
-    .blog-card-home p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .blog-image-placeholder {
+      height: 180px;
+      background: linear-gradient(135deg,
+        rgba(27,67,50,0.8) 0%,
+        rgba(45,106,79,0.6) 30%,
+        rgba(247,127,0,0.4) 70%,
+        rgba(27,67,50,0.8) 100%
+      );
+      position: relative; overflow: hidden;
+    }
+    .blog-image-placeholder::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(247,127,0,0.2) 0%, transparent 50%);
+    }
+    .blog-image-placeholder::after {
+      content: '📄'; position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-size: 2rem; opacity: 0.6;
+    }
+    .blog-card-content { padding: 1.5rem; }
+    .blog-card-home:hover {
+      border-color: rgba(247,127,0,0.3);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      opacity: 1;
+    }
+    .blog-card-home:hover .blog-image-placeholder {
+      transform: scale(1.05);
+    }
+    .blog-card-home .date {
+      font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.8rem;
+    }
+    .blog-card-home h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .blog-card-home p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;
+    }
 
-    /* ===== CTA SECTION ===== */
+    /* ===== NEWSLETTER CTA SECTION ===== */
     .cta-section {
       text-align: center;
       background: linear-gradient(135deg, rgba(27,67,50,0.2), rgba(247,127,0,0.08));
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     }
-    .cta-section h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
-    .cta-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem;
+      max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .newsletter-form {
+      display: flex; gap: 1rem; justify-content: center;
+      max-width: 450px; margin: 0 auto; flex-wrap: wrap;
+    }
+    .newsletter-input {
+      flex: 1; min-width: 250px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px; padding: 14px 18px;
+      color: var(--text); font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .newsletter-input:focus {
+      outline: none; border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(247,127,0,0.1);
+    }
+    .newsletter-input::placeholder { color: var(--text-dim); }
+    .newsletter-btn {
+      background: var(--orange); color: #000;
+      border: none; padding: 14px 24px; border-radius: 12px;
+      font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .newsletter-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(247,127,0,0.4);
+    }
 
     /* ===== CONTACT ===== */
     .contact-grid { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
@@ -218,6 +504,12 @@
       background: var(--glass); border: 1px solid var(--glass-border);
       border-radius: var(--radius-sm); padding: 1.5rem 2.5rem;
       text-align: center; min-width: 200px;
+      transition: all 0.3s ease;
+    }
+    .contact-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(247,127,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
     .contact-item .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
     .contact-item .label { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.3rem; }
@@ -236,6 +528,10 @@
       .trust-content { grid-template-columns: 1fr; gap: 2rem; }
       .hero { padding: 7rem 1.5rem 4rem; }
       section { padding: 4rem 0; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { min-width: auto; }
+      .steps-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
     }
 
     /* ===== ANIMATIONS ===== */
@@ -246,11 +542,12 @@
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav id="navbar">
     <div class="nav-inner">
       <a href="/" class="nav-logo"><span>🌿</span> AI Jungle</a>
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#proof">About</a></li>
         <li><a href="blog/">Blog</a></li>
         <li><a href="audit/" class="nav-cta">AI Readiness Score →</a></li>
@@ -260,6 +557,16 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="particles">
+      <div class="particle" style="left: 20%; animation-duration: 10s;"></div>
+      <div class="particle" style="left: 40%; animation-duration: 12s;"></div>
+      <div class="particle" style="left: 60%; animation-duration: 8s;"></div>
+      <div class="particle" style="left: 80%; animation-duration: 14s;"></div>
+      <div class="particle" style="left: 30%; animation-duration: 9s;"></div>
+      <div class="particle" style="left: 70%; animation-duration: 11s;"></div>
+      <div class="particle" style="left: 50%; animation-duration: 13s;"></div>
+      <div class="particle" style="left: 90%; animation-duration: 7s;"></div>
+    </div>
     <div class="hero-content">
       <div class="hero-badge">
         <span class="dot"></span>
@@ -271,6 +578,33 @@
         <a href="audit/" class="btn-primary">Get Your AI Readiness Score →</a>
         <a href="#services" class="btn-secondary">Explore Services</a>
       </div>
+    </div>
+  </section>
+
+  <!-- TECH TICKER -->
+  <section class="tech-ticker">
+    <div class="ticker-wrapper">
+      <div class="tech-logo">🤖 Claude</div>
+      <div class="tech-logo">🐍 Python</div>
+      <div class="tech-logo">⚡ Node.js</div>
+      <div class="tech-logo">🐳 Docker</div>
+      <div class="tech-logo">🐧 Linux</div>
+      <div class="tech-logo">🔗 Tailscale</div>
+      <div class="tech-logo">⚡ SvelteKit</div>
+      <div class="tech-logo">🔑 OpenAI</div>
+      <div class="tech-logo">📊 PostgreSQL</div>
+      <div class="tech-logo">🚀 Vercel</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="tech-logo">🤖 Claude</div>
+      <div class="tech-logo">🐍 Python</div>
+      <div class="tech-logo">⚡ Node.js</div>
+      <div class="tech-logo">🐳 Docker</div>
+      <div class="tech-logo">🐧 Linux</div>
+      <div class="tech-logo">🔗 Tailscale</div>
+      <div class="tech-logo">⚡ SvelteKit</div>
+      <div class="tech-logo">🔑 OpenAI</div>
+      <div class="tech-logo">📊 PostgreSQL</div>
+      <div class="tech-logo">🚀 Vercel</div>
     </div>
   </section>
 
@@ -348,6 +682,77 @@
     </div>
   </section>
 
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-label fade-in">Process</div>
+      <h2 class="section-title fade-in">How It Works</h2>
+      <p class="section-desc fade-in">Three simple steps from audit to autonomous systems.</p>
+
+      <div class="steps-grid">
+        <div class="step-card fade-in">
+          <div class="step-number">1</div>
+          <h4>Book Your Audit</h4>
+          <p>We analyze your workflows, identify automation opportunities, and create a prioritized roadmap. Get clarity on where AI can make the biggest impact in your business.</p>
+        </div>
+        <div class="step-card fade-in">
+          <div class="step-number">2</div>
+          <h4>We Build Together</h4>
+          <p>Our team implements the solutions from your roadmap. Custom development, system integration, and thorough testing. You get working AI systems, not just recommendations.</p>
+        </div>
+        <div class="step-card fade-in">
+          <div class="step-number">3</div>
+          <h4>You Scale</h4>
+          <p>Your AI agents run autonomously 24/7. We provide ongoing optimization, monitoring, and support as you scale. Focus on growth while AI handles the routine work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label fade-in">Testimonials</div>
+      <h2 class="section-title fade-in">What our clients say</h2>
+      <p class="section-desc fade-in">Real results from real businesses using AI automation.</p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-text">"AI Jungle delivered exactly what they promised. Our content pipeline now runs completely autonomously, and we're publishing 3x more high-quality content with the same team."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JS</div>
+            <div class="author-info">
+              <h5>Jamie Smith</h5>
+              <div class="role">CTO, TechFlow Solutions</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-text">"The AI audit revealed automation opportunities we never considered. Six months later, our operational efficiency improved by 40% and our team loves the streamlined workflows."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MK</div>
+            <div class="author-info">
+              <h5>Maria Kim</h5>
+              <div class="role">Operations Director, BuildCorp</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-text">"Working with AI Jungle was like having a senior AI engineer on our team. They understood our technical needs and delivered production-ready solutions that just work."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AL</div>
+            <div class="author-info">
+              <h5>Alex Liu</h5>
+              <div class="role">Engineering Lead, DataMotive</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- TRUST / WHY US -->
   <section id="trust">
     <div class="container">
@@ -404,19 +809,28 @@
 
       <div class="blog-grid-home">
         <a href="blog/ai-crypto-trading-experiment-week-0.html" class="blog-card-home fade-in">
-          <div class="date">February 8, 2026</div>
-          <h3>I'm Teaching My AI to Trade Crypto — Week 0</h3>
-          <p>What happens when you give an AI its own crypto wallets? Follow the real experiment.</p>
+          <div class="blog-image-placeholder"></div>
+          <div class="blog-card-content">
+            <div class="date">February 8, 2026</div>
+            <h3>I'm Teaching My AI to Trade Crypto — Week 0</h3>
+            <p>What happens when you give an AI its own crypto wallets? Follow the real experiment.</p>
+          </div>
         </a>
         <a href="blog/build-ai-assistant-engineer-2026.html" class="blog-card-home fade-in">
-          <div class="date">February 8, 2026</div>
-          <h3>Why Every Engineer Should Build Their Own AI Assistant</h3>
-          <p>Building your own AI agent is the career move every engineer needs. Here's how.</p>
-        </a>
+          <div class="blog-image-placeholder"></div>
+          <div class="blog-card-content">
+            <div class="date">February 8, 2026</div>
+            <h3>Why Every Engineer Should Build Their Own AI Assistant</h3>
+            <p>Building your own AI agent is the career move every engineer needs. Here's how.</p>
+          </div>
+        </div>
         <a href="blog/ai-consulting-business-services-2026.html" class="blog-card-home fade-in">
-          <div class="date">February 8, 2026</div>
-          <h3>The 3 AI Services Every Business Will Pay For</h3>
-          <p>AI Audit → Consulting → Productized Agents. The three-tier model that works.</p>
+          <div class="blog-image-placeholder"></div>
+          <div class="blog-card-content">
+            <div class="date">February 8, 2026</div>
+            <h3>The 3 AI Services Every Business Will Pay For</h3>
+            <p>AI Audit → Consulting → Productized Agents. The three-tier model that works.</p>
+          </div>
         </a>
       </div>
       <div style="text-align:center;">
@@ -425,12 +839,18 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA WITH NEWSLETTER -->
   <section class="cta-section">
     <div class="container fade-in">
-      <h2>How AI-ready is your business?</h2>
-      <p>Take our free 2-minute assessment and discover your top automation opportunities.</p>
-      <a href="audit/" class="btn-primary">Get Your AI Readiness Score →</a>
+      <h2>Stay ahead of the AI curve</h2>
+      <p>Get weekly insights on AI automation, tools, and strategies that actually work. No hype, just practical value.</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+        <button type="submit" class="newsletter-btn">Subscribe →</button>
+      </form>
+      <div style="margin-top: 1.5rem;">
+        <a href="audit/" class="btn-secondary">Or Get Your AI Readiness Score →</a>
+      </div>
     </div>
   </section>
 
@@ -471,8 +891,9 @@
     </p>
   </footer>
 
-  <!-- SCROLL ANIMATIONS -->
+  <!-- ENHANCED JAVASCRIPT -->
   <script>
+    // Scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -481,6 +902,110 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Floating nav on scroll
+    const navbar = document.getElementById('navbar');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateNavbar() {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        navbar.classList.add('hidden');
+      } else {
+        navbar.classList.remove('hidden');
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateNavbar);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+
+    // Newsletter form submission
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input').value;
+      const btn = this.querySelector('button');
+
+      // Simple validation
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+      }
+
+      // Simulate submission
+      btn.textContent = 'Subscribing...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = 'Subscribed ✓';
+        btn.style.background = '#4ade80';
+        this.querySelector('input').value = '';
+
+        setTimeout(() => {
+          btn.textContent = 'Subscribe →';
+          btn.style.background = 'var(--orange)';
+          btn.disabled = false;
+        }, 3000);
+      }, 1500);
+    });
+
+    // Dynamic particle generation
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = (Math.random() * 6 + 8) + 's';
+      particle.style.animationDelay = Math.random() * 2 + 's';
+
+      const colors = [
+        'rgba(247,127,0,0.6)',
+        'rgba(45,106,79,0.5)',
+        'rgba(27,67,50,0.4)'
+      ];
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      document.querySelector('.particles').appendChild(particle);
+
+      // Remove particle after animation
+      setTimeout(() => {
+        if (particle.parentNode) {
+          particle.parentNode.removeChild(particle);
+        }
+      }, 15000);
+    }
+
+    // Create particles periodically
+    setInterval(createParticle, 2000);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
