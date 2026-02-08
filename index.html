@@ -3,234 +3,484 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to the AI Jungle — Industry 5.0 for the Individual</title>
-  <meta name="description" content="AI agents meet physical making. We help engineers, makers, and manufacturers harness AI — from personal agents to production-ready workflows.">
-  <meta property="og:title" content="Welcome to AI Jungle">
-  <meta property="og:description" content="Industry 5.0 for the Individual. AI agents + physical making, bridged.">
+  <title>AI Jungle — AI Agents That Actually Work</title>
+  <meta name="description" content="We build AI agents for engineers, makers, and manufacturers. From audits to autonomous systems — Industry 5.0 for the individual.">
+  <meta property="og:title" content="AI Jungle — AI Agents That Actually Work">
+  <meta property="og:description" content="AI consulting for engineers & makers. Audits, implementation, productized agents.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://welcometotheaijungle.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@Tileo_LG">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://welcometotheaijungle.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="blog.css">
-  <link rel="canonical" href="https://welcometotheaijungle.com/">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Welcome to the AI Jungle",
     "url": "https://welcometotheaijungle.com",
-    "description": "AI agents and automation for engineers, makers, and small manufacturers. Industry 5.0 for the Individual.",
-    "founder": { "@type": "Person", "name": "AI Jungle Team" },
+    "description": "AI agents and consulting for engineers, makers, and manufacturers.",
     "sameAs": ["https://x.com/Tileo_LG", "https://youtube.com/@WelcometoAIJungle"]
   }
   </script>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green: #1B4332; --teal: #2D6A4F; --orange: #F77F00;
+      --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a;
+      --text: #e8e8e8; --text-muted: #888; --text-dim: #555;
+      --border: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.08);
+      --radius: 16px; --radius-sm: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; overflow-x: hidden;
+    }
+    a { color: var(--orange); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.85; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,10,10,0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { font-size: 1.2rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .nav-logo span { font-size: 1.4rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); opacity: 1; }
+    .nav-cta {
+      background: var(--orange); color: #000; padding: 8px 18px;
+      border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
+      padding: 8rem 2rem 6rem;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(27,67,50,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(45,106,79,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 10% 60%, rgba(247,127,0,0.08) 0%, transparent 50%);
+      animation: heroGlow 8s ease-in-out infinite alternate;
+    }
+    @keyframes heroGlow {
+      0% { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 100px; padding: 6px 16px; font-size: 0.8rem;
+      color: var(--text-muted); margin-bottom: 2rem;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 900;
+      line-height: 1.1; margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, #ccc 50%, var(--orange) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange); color: #000; padding: 14px 32px;
+      border-radius: 12px; font-weight: 700; font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(247,127,0,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(247,127,0,0.35); opacity: 1; }
+    .btn-secondary {
+      background: var(--glass); color: var(--text); padding: 14px 32px;
+      border-radius: 12px; font-weight: 600; font-size: 1rem;
+      border: 1px solid var(--glass-border); transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); opacity: 1; }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 6rem 0; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--orange); margin-bottom: 1rem;
+    }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+    .section-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem; }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); padding: 2.5rem; transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-4px); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+    .service-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .service-price { color: var(--orange); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
+    .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+    .service-features { list-style: none; margin-top: 1.2rem; }
+    .service-features li { color: var(--text-muted); font-size: 0.9rem; padding: 4px 0; }
+    .service-features li::before { content: '→ '; color: var(--teal); }
+
+    /* ===== PROOF ===== */
+    .proof { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .proof-item { text-align: center; padding: 2rem; }
+    .proof-item .number { font-size: 2.5rem; font-weight: 900; color: var(--orange); }
+    .proof-item .label { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem; }
+
+    /* ===== TRUST ===== */
+    .trust-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .trust-text h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .trust-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-badge {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      padding: 6px 14px; border-radius: 100px; font-size: 0.8rem;
+      color: var(--text-muted); font-weight: 500;
+    }
+    .baibot-card {
+      background: linear-gradient(135deg, rgba(27,67,50,0.3), rgba(45,106,79,0.1));
+      border: 1px solid rgba(45,106,79,0.3); border-radius: var(--radius);
+      padding: 2.5rem; position: relative;
+    }
+    .baibot-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+    .baibot-card ul { list-style: none; }
+    .baibot-card li { color: var(--text-muted); font-size: 0.9rem; padding: 4px 0; }
+    .baibot-card li::before { content: '✓ '; color: #4ade80; font-weight: 700; }
+
+    /* ===== VISION ===== */
+    .vision {
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(27,67,50,0.1) 50%, var(--bg) 100%);
+    }
+    .vision-text { max-width: 700px; margin: 0 auto; color: var(--text-muted); font-size: 1.15rem; line-height: 1.8; }
+    .vision-text strong { color: var(--text); }
+
+    /* ===== BLOG ===== */
+    .blog-grid-home { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .blog-card-home {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); padding: 2rem; transition: all 0.3s;
+      display: block; color: var(--text);
+    }
+    .blog-card-home:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); opacity: 1; }
+    .blog-card-home .date { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.8rem; }
+    .blog-card-home h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
+    .blog-card-home p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(27,67,50,0.2), rgba(247,127,0,0.08));
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .cta-section h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    /* ===== CONTACT ===== */
+    .contact-grid { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+    .contact-item {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); padding: 1.5rem 2.5rem;
+      text-align: center; min-width: 200px;
+    }
+    .contact-item .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .contact-item .label { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.3rem; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center; padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim); font-size: 0.85rem;
+    }
+    footer a { color: var(--orange); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .trust-content { grid-template-columns: 1fr; gap: 2rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      section { padding: 4rem 0; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
 <body>
+
   <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="container nav-inner">
-      <a href="#" class="nav-brand">AI<span class="accent">Jungle</span></a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><span>🌿</span> AI Jungle</a>
+      <ul class="nav-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="audit/">AI Readiness Score</a></li>
+        <li><a href="#proof">About</a></li>
         <li><a href="blog/">Blog</a></li>
-        <li><a href="#contact" class="btn btn-sm">Get in Touch</a></li>
+        <li><a href="audit/" class="nav-cta">AI Readiness Score →</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="container hero-inner">
-      <p class="hero-label">Welcome to</p>
-      <h1 class="hero-title">AI Jungle</h1>
-      <p class="hero-tagline">Industry 5.0 for the Individual</p>
-      <p class="hero-sub">AI agents + physical making, bridged.<br>I built my own AI assistant. Now I help engineers and makers do the same.</p>
-      <div class="hero-cta">
-        <a href="#services" class="btn btn-primary">Explore Services</a>
-        <a href="#content" class="btn btn-outline">Watch the Content</a>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Building the future of AI for engineers
+      </div>
+      <h1>AI Agents That Actually Work</h1>
+      <p>We build autonomous AI systems for engineers, makers, and manufacturers. Not chatbot wrappers — real agents that monitor, decide, and execute. Industry 5.0 for the individual.</p>
+      <div class="hero-buttons">
+        <a href="audit/" class="btn-primary">Get Your AI Readiness Score →</a>
+        <a href="#services" class="btn-secondary">Explore Services</a>
       </div>
     </div>
-    <div class="hero-gradient"></div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section" id="about">
+  <!-- PROOF BAR -->
+  <section class="proof" id="proof">
     <div class="container">
-      <h2 class="section-title">The Mission</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p class="lead">Most AI advice is built for software companies. But what about the engineer on the shop floor? The maker in the fablab? The hardware startup shipping atoms, not just bits?</p>
-          <p>AI Jungle exists at that intersection — bridging Western manufacturing know-how with India's fast-growing industrial ecosystem, with AI as the differentiator. We help European and American SMEs enter the Indian market, and Indian manufacturers scale and export with AI-powered processes.</p>
-          <p>This isn't about hype. It's about giving individual engineers and small manufacturers the same AI leverage that big tech takes for granted. Personal agents. Smart workflows. Real tools for real work.</p>
+      <div class="proof-grid fade-in">
+        <div class="proof-item">
+          <div class="number">24/7</div>
+          <div class="label">Our AI agent Baibot runs autonomously — monitoring, creating, executing</div>
         </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <span class="stat-icon">🤖</span>
-            <span class="stat-label">AI Agents Built</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-icon">🔧</span>
-            <span class="stat-label">Engineering-First</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-icon">🏭</span>
-            <span class="stat-label">Atoms + Bits</span>
-          </div>
+        <div class="proof-item">
+          <div class="number">8+</div>
+          <div class="label">Blog posts published by our AI content pipeline</div>
+        </div>
+        <div class="proof-item">
+          <div class="number">11</div>
+          <div class="label">Automated workflows running via cron — briefs, reviews, monitoring</div>
+        </div>
+        <div class="proof-item">
+          <div class="number">5</div>
+          <div class="label">Specialist AI agents coordinated by a leveling framework (L1→L4)</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section class="section section-alt" id="services">
+  <section id="services">
     <div class="container">
-      <h2 class="section-title">Services</h2>
-      <p class="section-sub">Four ways to work together — from a single session to ongoing partnership.</p>
+      <div class="section-label fade-in">Services</div>
+      <h2 class="section-title fade-in">Three ways we help you win with AI</h2>
+      <p class="section-desc fade-in">From discovery to deployment. Each service builds on the last.</p>
+
       <div class="services-grid">
-        <div class="service-card">
-          <div class="service-number">01</div>
+        <div class="service-card fade-in">
+          <span class="service-icon">🔍</span>
           <h3>AI Audit & Roadmap</h3>
-          <p>A focused deep-dive into your workflow. We map where AI fits, what's noise, and what moves the needle — delivered as a clear, prioritized action plan.</p>
-          <span class="service-tag">One-time</span>
+          <div class="service-price">$500 – $1,500</div>
+          <p>A 2-hour deep-dive into your workflows. We identify every AI automation opportunity, score them by impact, and deliver a prioritized roadmap with ROI projections.</p>
+          <ul class="service-features">
+            <li>Process-by-process analysis</li>
+            <li>AI opportunity scoring matrix</li>
+            <li>Implementation roadmap with timelines</li>
+            <li>Conservative ROI projections</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <div class="service-number">02</div>
-          <h3>Personal AI Agent Setup</h3>
-          <p>Your own AI assistant, configured for your work. Email triage, document processing, research automation — tailored to how you actually operate.</p>
-          <span class="service-tag">Project</span>
+
+        <div class="service-card fade-in">
+          <span class="service-icon">⚡</span>
+          <h3>AI Implementation</h3>
+          <div class="service-price">$150 – $500/hr</div>
+          <p>We don't just advise — we build it with you. Solution architecture, custom development, integration, training. The bridge between strategy and working systems.</p>
+          <ul class="service-features">
+            <li>Custom AI solution development</li>
+            <li>System integration & testing</li>
+            <li>Team training & knowledge transfer</li>
+            <li>Performance optimization</li>
+          </ul>
         </div>
-        <div class="service-card featured">
-          <div class="service-number">03</div>
-          <h3>AI-Powered Workshop</h3>
-          <p>Hands-on, small-group sessions for teams. Build real AI workflows together — not slides and theory, but working tools you keep after the workshop.</p>
-          <span class="service-tag">Team</span>
+
+        <div class="service-card fade-in">
+          <span class="service-icon">🤖</span>
+          <h3>Productized AI Agents</h3>
+          <div class="service-price">$2,000 – $10,000/mo</div>
+          <p>Purpose-built AI agents that work for you 24/7. Customer service, content creation, data processing, market monitoring — deployed and managed as a service.</p>
+          <ul class="service-features">
+            <li>Custom-built for your domain</li>
+            <li>24/7 autonomous operation</li>
+            <li>Monthly optimization & reporting</li>
+            <li>Full managed service</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <div class="service-number">04</div>
-          <h3>Monthly Retainer</h3>
-          <p>Ongoing AI partnership. We stay embedded with your team — building, optimizing, and evolving your AI stack as your needs grow.</p>
-          <span class="service-tag">Ongoing</span>
-        </div>
-      </div>
-      <div class="cta-center">
-        <a href="#contact" class="btn btn-primary">Let's Talk About Your Needs</a>
       </div>
     </div>
   </section>
 
-  <!-- CONTENT HUB -->
-  <section class="section" id="content">
+  <!-- TRUST / WHY US -->
+  <section id="trust">
     <div class="container">
-      <h2 class="section-title">Content Hub</h2>
-      <p class="section-sub">I build in public. Follow the journey — tutorials, experiments, and real-world AI builds.</p>
-      <div class="content-grid">
-        <a href="https://youtube.com/@WelcometoAIJungle" target="_blank" rel="noopener" class="content-card content-youtube">
-          <div class="content-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <div class="trust-content">
+        <div class="trust-text fade-in">
+          <div class="section-label">Why Us</div>
+          <h3>We don't just sell AI.<br>We live it.</h3>
+          <p>Our own AI agent — Baibot — runs our infrastructure, creates our content, manages our workflows, and even trades crypto autonomously. We built the tools we sell. Every recommendation comes from hands-on experience, not slide decks.</p>
+          <p>We're engineers first. We think in systems, not hype. And we build for the "confused middle" — people too technical for basic ChatGPT tips, but without enterprise budgets for full AI transformation.</p>
+          <div class="tech-stack">
+            <span class="tech-badge">Claude / Opus</span>
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">SvelteKit</span>
+            <span class="tech-badge">Remotion</span>
+            <span class="tech-badge">Solidity</span>
+            <span class="tech-badge">Linux</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Tailscale</span>
           </div>
-          <h3>YouTube</h3>
-          <p>Tutorials, builds, and deep dives into AI agents for engineers and makers.</p>
-          <span class="content-handle">@WelcometoAIJungle</span>
-        </a>
-        <a href="https://x.com/Tileo_LG" target="_blank" rel="noopener" class="content-card content-x">
-          <div class="content-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </div>
-          <h3>X / Twitter</h3>
-          <p>Daily thoughts on AI, automation, and the future of individual manufacturing.</p>
-          <span class="content-handle">@Tileo_LG</span>
-        </a>
-        <a href="#" class="content-card content-linkedin" style="pointer-events:none;opacity:0.5;">
-          <div class="content-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </div>
-          <h3>LinkedIn</h3>
-          <p>Coming soon.</p>
-          <span class="content-handle">Coming Soon</span>
-        </a>
+        </div>
+        <div class="baibot-card fade-in">
+          <h4>🤖 Baibot — Our Living Proof</h4>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">An autonomous AI agent that runs 24/7 on a $10/month VPS:</p>
+          <ul>
+            <li>Monitors servers and alerts on issues</li>
+            <li>Triages email and manages calendar</li>
+            <li>Writes blog posts and social content</li>
+            <li>Manages 5 specialist sub-agents</li>
+            <li>Trades crypto with its own wallets</li>
+            <li>Remembers everything — persistent memory</li>
+            <li>Coordinates via Telegram, runs 11 cron jobs</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO PLACEHOLDER (hidden, ready for future) -->
-  <!--
-  <section class="section section-alt" id="portfolio">
+  <!-- VISION -->
+  <section class="vision">
+    <div class="container fade-in" style="text-align:center;">
+      <div class="section-label">The Vision</div>
+      <h2 class="section-title">Building the largest AI toolbox<br>for engineers & makers</h2>
+      <p class="vision-text">AI Jungle is becoming a <strong>platform</strong> — micro-apps, AI agents, tools, and a consulting marketplace, all in one place. Think WeChat's mini-programs, but built for builders. <strong>Content today. Platform tomorrow. Ecosystem eventually.</strong></p>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
     <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-sub">Selected builds and case studies.</p>
-      <div class="portfolio-grid">
-        // Cards go here
+      <div class="section-label fade-in">From the Jungle</div>
+      <h2 class="section-title fade-in">Latest dispatches</h2>
+      <p class="section-desc fade-in">Real experiments. Honest results. No fluff.</p>
+
+      <div class="blog-grid-home">
+        <a href="blog/ai-crypto-trading-experiment-week-0.html" class="blog-card-home fade-in">
+          <div class="date">February 8, 2026</div>
+          <h3>I'm Teaching My AI to Trade Crypto — Week 0</h3>
+          <p>What happens when you give an AI its own crypto wallets? Follow the real experiment.</p>
+        </a>
+        <a href="blog/build-ai-assistant-engineer-2026.html" class="blog-card-home fade-in">
+          <div class="date">February 8, 2026</div>
+          <h3>Why Every Engineer Should Build Their Own AI Assistant</h3>
+          <p>Building your own AI agent is the career move every engineer needs. Here's how.</p>
+        </a>
+        <a href="blog/ai-consulting-business-services-2026.html" class="blog-card-home fade-in">
+          <div class="date">February 8, 2026</div>
+          <h3>The 3 AI Services Every Business Will Pay For</h3>
+          <p>AI Audit → Consulting → Productized Agents. The three-tier model that works.</p>
+        </a>
+      </div>
+      <div style="text-align:center;">
+        <a href="blog/" class="btn-secondary">View All Posts →</a>
       </div>
     </div>
   </section>
-  -->
 
-  <!-- LATEST FROM THE BLOG -->
-  <section class="blog-section" id="blog">
-    <div class="container">
-      <h2 class="section-title">Latest from the Blog</h2>
-      <p class="section-sub">Dispatches on AI agents, Industry 5.0, and building things that matter.</p>
-      <div class="blog-preview-grid">
-        <a href="blog/i-built-my-ai-cofounder.html" class="blog-preview-card">
-          <span class="card-date">February 1, 2026</span>
-          <h3>I Built My AI Co-Founder — Here's What Happened</h3>
-          <p>The story of building Baibot — a personal AI agent that's nothing like ChatGPT. What it actually does, the real workflow, and the honest limitations.</p>
-          <span class="read-more">Read more →</span>
-        </a>
-        <a href="blog/industry-5-for-the-individual.html" class="blog-preview-card">
-          <span class="card-date">February 1, 2026</span>
-          <h3>Industry 5.0 for the Individual — Why Engineers Need Personal AI Now</h3>
-          <p>Industry 4.0 was for factories. Industry 5.0 puts AI in the hands of individual engineers and makers. Our thesis.</p>
-          <span class="read-more">Read more →</span>
-        </a>
-        <a href="blog/ai-agent-vs-chatbot.html" class="blog-preview-card">
-          <span class="card-date">February 1, 2026</span>
-          <h3>AI Agent vs Chatbot — Why the Difference Matters for Your Workshop</h3>
-          <p>Most people use AI as a chatbot. An agent monitors, decides, and executes autonomously. Here's why that changes everything.</p>
-          <span class="read-more">Read more →</span>
-        </a>
-      </div>
-      <div class="cta-center" style="margin-top:40px;">
-        <a href="blog/" class="btn btn-outline">View All Posts →</a>
-      </div>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container fade-in">
+      <h2>How AI-ready is your business?</h2>
+      <p>Take our free 2-minute assessment and discover your top automation opportunities.</p>
+      <a href="audit/" class="btn-primary">Get Your AI Readiness Score →</a>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section section-alt" id="contact">
-    <div class="container">
-      <h2 class="section-title">Let's Build Something</h2>
-      <p class="section-sub">Whether you need a one-time audit or an ongoing AI partner — drop a line.</p>
-      <div class="contact-inner">
-        <a href="mailto:welcometoaijungle@gmail.com" class="btn btn-primary btn-lg">welcometoaijungle@gmail.com</a>
-        <div class="contact-socials">
-          <a href="https://youtube.com/@WelcometoAIJungle" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
-          <a href="https://x.com/Tileo_LG" target="_blank" rel="noopener" aria-label="X / Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <!-- LinkedIn link removed — will add back later -->
-        </div>
+  <section id="contact">
+    <div class="container" style="text-align:center;">
+      <div class="section-label fade-in">Get in Touch</div>
+      <h2 class="section-title fade-in">Let's build something together</h2>
+      <p class="section-desc fade-in" style="margin-left:auto;margin-right:auto;">Whether you need an audit, an agent, or just want to talk AI — we're here.</p>
+      <div class="contact-grid fade-in">
+        <a href="mailto:welcometoaijungle@gmail.com" class="contact-item">
+          <div class="icon">📧</div>
+          <div class="label">Email</div>
+          <div>welcometoaijungle@gmail.com</div>
+        </a>
+        <a href="https://x.com/Tileo_LG" target="_blank" class="contact-item">
+          <div class="icon">𝕏</div>
+          <div class="label">Follow us</div>
+          <div>@Tileo_LG</div>
+        </a>
+        <a href="https://youtube.com/@WelcometoAIJungle" target="_blank" class="contact-item">
+          <div class="icon">▶️</div>
+          <div class="label">YouTube</div>
+          <div>@WelcometoAIJungle</div>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p class="footer-brand">AI<span class="accent">Jungle</span></p>
-      <p class="footer-copy">&copy; 2026 Welcome to AI Jungle. All rights reserved.</p>
-    </div>
+  <footer>
+    <p>&copy; 2026 Welcome to the AI Jungle. All rights reserved.</p>
+    <p style="margin-top:0.5rem;">
+      <a href="/">Home</a> ·
+      <a href="blog/">Blog</a> ·
+      <a href="audit/">AI Readiness Score</a> ·
+      <a href="https://x.com/Tileo_LG" target="_blank">𝕏</a>
+    </p>
   </footer>
 
-  <script src="main.js"></script>
+  <!-- SCROLL ANIMATIONS -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
